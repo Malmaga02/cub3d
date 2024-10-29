@@ -9,7 +9,9 @@ t_map	*create_map(char *map_file)
 		return (error(MALLOC_E), NULL);
 	map->map = parse_map(map_file);
 	if (check_not_allowed_char(map->map) || spaces_in_map(map->map))
-		return (free_mtx(map->map), free(map), error(ERROR_MAP), NULL)
+		return (free_mtx(map->map, count_rows(map->map)), free(map), error(ERROR_MAP), NULL);
 	map->rows = count_rows(map->map);
 }
-// cosa mi manca?
+// spaces_in_map da fare,
+// necessita di algoritmo che mi controlla gli spazi, ovvero se ho degli spazi 
+//a indice x di una matrice, devo controllare che la mappa sia comunque chiusa

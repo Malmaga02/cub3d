@@ -49,10 +49,10 @@ int	not_closed_map(char **map, int row, int col)
 {
 	if (!map || !map[row])
 		return (1);
-	if ((map[row - 1] && map[row - 1][j] && !outside_walls(map[row - 1][j]))
-		|| (map[row + 1] && map[row + 1][j] && !outside_walls(map[row + 1][j]))
-		|| (map[row] && map[row][j - 1] && !outside_walls(map[row][j - 1]))
-		|| (map[row] && map[row][j + 1] && !outside_walls(map[row][j + 1])))
+	if ((map[row - 1] && map[row - 1][col] && !outside_walls(map[row - 1][col]))
+		|| (map[row + 1] && map[row + 1][col] && !outside_walls(map[row + 1][col]))
+		|| (map[row] && map[row][col - 1] && !outside_walls(map[row][col - 1]))
+		|| (map[row] && map[row][col + 1] && !outside_walls(map[row][col + 1])))
 		return (1);
 	return (0);
 }

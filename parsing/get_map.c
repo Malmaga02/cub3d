@@ -13,7 +13,7 @@
 // necessita di algoritmo che mi controlla gli spazi, ovvero se ho degli spazi 
 //a indice x di una matrice, devo controllare che la mappa sia comunque chiusa
 
-int	empty_line(char *str)
+bool	empty_line(char *str)
 {
 	int	i;
 
@@ -21,26 +21,26 @@ int	empty_line(char *str)
 	while (str && str[i])
 	{
 		if (!check_spaces(str[i]))
-			return (0);
+			return (false);
 		i++;
 	}
-	return (1);
+	return (true);
 }
 
-int	is_external_row(char *str)
+bool	is_external_row(char *str)
 {
 	int	i;
 
 	i = 0;
 	if (empty_line(str))
-		return (0);
+		return (false);
 	while (str && str[i])
 	{
-		if (!(str[i] == '1' || check_spaces(str[i])))
-			return (0);
+		if (!extern_char(str[i]))
+			return (false);
 		i++;
 	}
-	return (1);
+	return (true);
 }
 
 char	**lst_to_mtx(t_list *head)

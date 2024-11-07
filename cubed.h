@@ -59,8 +59,8 @@ char		*get_path_texture(char	*texture, char *flag);
 char		*get_info_element(char *name_file, char *flag);
 t_element	*get_elements(char *name_file);
 	// Get_map
-int			empty_line(char *str);
-int			is_external_row(char *str);
+bool		empty_line(char *str);
+bool		is_external_row(char *str);
 char		**lst_to_mtx(t_list *head);
 char		*get_map_rows(int fd, int flag);
 char		**get_map(char *name_file);

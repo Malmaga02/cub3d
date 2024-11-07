@@ -9,7 +9,7 @@ bool	check_spaces(int c)
 
 bool	extern_char(int c)
 {
-	if (check_spaces(c) || c == '1');
+	if (check_spaces(c) || c == '1')
 		return (true);
 	return (false);
 }

@@ -17,11 +17,11 @@ LIBFT_MAKE = ./libft
 MLX_MAKE = ./mlx
 
 SRC = ./main.c \
-	./parsing/create_t_map.c \
 	./parsing/get_elements.c \
-	./parsing/handling_char.c \
+	./parsing/get_map.c \
+	./parsing/get_t_map.c \
+	./parsing/is_map_playable.c \
 	./parsing/parse_file.c \
-	./parsing/parse_map.c \
 	./parsing/parse_utils.c \
 	./print/print_error.c \
 	./print/print.c
@@ -34,6 +34,7 @@ all: $(NAME)
 $(NAME): $(OBJ) 
 	@make all -s -C $(LIBFT_MAKE)
 	$(CC) $(CFLAGS) -I. $(OBJ) -L$(LIBFT_MAKE) -lft -o $(NAME)
+	@echo "$(COLOUR_BLUE) $(BOLD_TEXT) Run ./cub3d to start the game. $(RESET)";
 
 clean:
 	@make clean -s -C $(LIBFT_MAKE)

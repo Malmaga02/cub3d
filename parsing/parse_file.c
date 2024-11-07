@@ -10,8 +10,7 @@ t_all	*parse_file(char *name_file)
 	all_info->info_elements = get_elements(name_file);
 	if (!all_info->info_elements)
 		return (NULL);
-	all_info->map = create_map(name_file);
-	print_mtx(all_info->map->map);
+	all_info->map = get_t_map(name_file);
 	if (!all_info->map)
 		return (NULL);
 	return (all_info);

@@ -99,18 +99,13 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(AR) $(OBJ)
-	@echo "	$(COLOUR_BLUE) $(BOLD_TEXT) Guess what?! You did it! $(RESET)"
 
 clean:
 	@$(RM) $(OBJ)
-	@echo "	$(COLOUR_BLUE) $(BOLD_TEXT) You're losing some stuff. Be careful! $(RESET)"
-	@echo "			$(COLOUR_GREEN) $(ITALIC_TEXT) $(BOLD_TEXT) Or don't, whatever... (Even though you should, you slacker!) $(RESET)"
 
 fclean: clean
 	@$(RM) */**/*.o
 	@$(RM) $(NAME)
-	@echo "	$(COLOUR_BLUE) $(BOLD_TEXT) You destroyed EVERYTHING! $(RESET)"
-	@echo "			$(COLOUR_GREEN) $(ITALIC_TEXT) $(BOLD_TEXT) Told ya... $(RESET)"
 
 re: fclean all
 

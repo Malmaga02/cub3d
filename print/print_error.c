@@ -11,5 +11,7 @@ void	error(int flag)
 	else if (flag == MISSING_MAP)
 		ft_putstr_fd("The map is missing.\n", 2);
 	else if (flag == ERROR_MAP)
-		ft_putstr_fd("Error on the map.\n", 2)
+		ft_putstr_fd("Error on the map.\n", 2);
+	else if (flag == OPEN_MAP)
+		ft_putstr_fd("Error: the given map is not playable.\n", 2);
 }

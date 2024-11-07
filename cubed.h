@@ -8,6 +8,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <string.h>
+# include <stdbool.h>
 # include "libft/headers/libft.h"
 
 typedef enum	s_error
@@ -16,7 +17,8 @@ typedef enum	s_error
 	OPEN_E,
 	MISSING_EL,
 	MISSING_MAP,
-	ERROR_MAP
+	ERROR_MAP,
+	OPEN_MAP
 }	t_error;
 
 typedef struct	s_element
@@ -53,30 +55,35 @@ typedef struct	s_all
 
 // ----Parsing----
 	// Get_elements
+char		*get_path_texture(char	*texture, char *flag);
 char		*get_info_element(char *name_file, char *flag);
 t_element	*get_elements(char *name_file);
-	// Parse_file
-t_all		*parse_file(char *name_file);
-	// Parse_map
-char		*get_map_strings(int fd, int flag);
-char		**parse_map(char *name_file);
-	// Handling_char
-int			check_spaces(char c);
-int			outside_walls(char c);
+	// Get_map
 int			empty_line(char *str);
 int			is_external_row(char *str);
-int			check_not_allowed_char(char **mtx);
-	//Parse_utils
-char		*get_path_texture(char	*texture, char *flag);
 char		**lst_to_mtx(t_list *head);
-int			not_closed_map(char **map, int row, int col);
-int			spaces_in_map(char **map);
-
+char		*get_map_rows(int fd, int flag);
+char		**get_map(char *name_file);
+	// Get_t_map
+t_map		*get_t_map(char *map_file);
+	// Is_map_playable
+bool		correct_char_set(char **map);
+bool		is_surrounded(char **map, int row, int col);
+bool		closed_map(char **map);
+bool		is_map_playable(char **map);
+	// Parse_file
+t_all		*parse_file(char *name_file);
+	// Parse_utils
+bool		check_spaces(int c);
+bool		extern_char(int c);
+bool		is_inside_row(int row, int total_row);
+bool		is_inside_col(int col, int len);
+bool		is_player(int c);
 // ----Print----
 	// Print_error
+void		error(int flag);
 	// Print
 void		print_mtx(char **mtx);
 // ----Start_game----
 	// Start_game
-
 #endif

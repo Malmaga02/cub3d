@@ -17,10 +17,14 @@ LIBFT_MAKE = ./libft
 MLX_MAKE = ./mlx
 
 SRC = ./main.c \
+	./parsing/create_t_map.c \
 	./parsing/get_elements.c \
+	./parsing/handling_char.c \
 	./parsing/parse_file.c \
 	./parsing/parse_map.c \
-	./parsing/parse_utils.c
+	./parsing/parse_utils.c \
+	./print/print_error.c \
+	./print/print.c
 
 
 OBJ = $(SRC:.c=.o)

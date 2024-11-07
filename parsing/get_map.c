@@ -13,7 +13,60 @@
 // necessita di algoritmo che mi controlla gli spazi, ovvero se ho degli spazi 
 //a indice x di una matrice, devo controllare che la mappa sia comunque chiusa
 
-char	*get_map_strings(int fd, int flag)
+int	empty_line(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str && str[i])
+	{
+		if (!check_spaces(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	is_external_row(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (empty_line(str))
+		return (0);
+	while (str && str[i])
+	{
+		if (!(str[i] == '1' || check_spaces(str[i])))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+char	**lst_to_mtx(t_list *head)
+{
+	char	**map;
+	int		size;
+	int		i;
+
+	size = ft_lstsize(head);
+	i = 0;
+	map = ft_calloc(size + 1, sizeof(char *));
+	if (!map)
+		return (NULL);
+	while (head && i < size)
+	{
+		map[i] = ft_strdup((char *)head->content);
+		if (!map[i])
+			return (free_mtx(map, i), ft_lstclear(&head, free), NULL);
+		i++;
+		head = head->next;
+	}
+	map[i] = NULL;
+	return (ft_lstclear(&head, free), map);
+}
+
+char	*get_map_rows(int fd, int flag)
 {
 	char	*read_line;
 	char	*content;
@@ -29,14 +82,14 @@ char	*get_map_strings(int fd, int flag)
 				return (error(MISSING_MAP), free(read_line), NULL);
 		}
 	}
-	if (!read_line || (read_line && !*read_line))
+	if (!read_line || empty_line(read_line))
 		return (free(read_line), NULL);
 	content = ft_strdup(read_line);
 	free(read_line);
 	return (content);
 }
 
-char	**parse_map(char *name_file)
+char	**get_map(char *name_file)
 {
 	t_list	*head;
 	t_list	*node;
@@ -47,18 +100,18 @@ char	**parse_map(char *name_file)
 	if (fd == -1)
 		return (close(fd), NULL);
 	head = NULL;
-	content = get_map_strings(fd, 0);
+	content = get_map_rows(fd, 0);
 	while (content)
 	{
 		node = ft_lstnew((void *)ft_strdup(content));
-		if (!node)
+		if (empty_line(content) || !node)
 			return (ft_lstclear(&head, free), close(fd), free(content), NULL);
 		ft_lstadd_back(&head, node);
 		free(content);
-		content = get_map_strings(fd, 1);
+		content = get_map_rows(fd, 1);
 	}
 	close(fd);
 	if (!head)
-		return (error(ERROR_MAP), NULL);
+		return (NULL);
 	return (lst_to_mtx(head));
 }

@@ -11,7 +11,7 @@ t_all	*parse_file(char *name_file)
 	if (!all_info->info_elements)
 		return (NULL);
 	all_info->map = create_map(name_file);
-	print_mtx(all_info->map);
+	print_mtx(all_info->map->map);
 	if (!all_info->map)
 		return (NULL);
 	return (all_info);

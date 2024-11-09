@@ -23,7 +23,7 @@ void	start_game(t_mlx *pMlx)
 {
 	//call a fn per inizializzazione struct
 	pMlx->mlx = mlx_init();
-	pMlx->mlx_win = mlx_new_window(pMlx->mlx, 1080, 720, "cub3d");
+	pMlx->mlx_win = mlx_new_window(pMlx->mlx, SCREEN_H, SCREEN_W, "cub3d");
 	mlx_hook(pMlx->mlx_win, KeyPress, KeyPressMask, &close_window, &pMlx);
 	mlx_hook(pMlx->mlx_win, 17, 1L << 17, quit_game, &pMlx);
 	mlx_loop(pMlx->mlx);

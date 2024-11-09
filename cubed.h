@@ -27,6 +27,8 @@
 # define KEY_DOWN 65364
 # define KEY_ESC 65307
 
+# define SCREEN_W 720
+# define SCREEN_H 1080
 
 typedef enum	s_error
 {
@@ -61,6 +63,8 @@ typedef struct	s_player
 {
 	double		dir_playerX;
 	double		dir_playerY;
+	double		plane_x;
+	double		plane_y;
 }			t_player;
 
 typedef struct s_mlx
@@ -71,6 +75,8 @@ typedef struct s_mlx
 
 typedef struct	s_all
 {
+	double		time;
+	double		old_time;
 	t_element	*info_elements;
 	t_map		*map;
 	t_mlx		*window;

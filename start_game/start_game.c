@@ -1,4 +1,4 @@
-#include "cubed.h"
+#include "../cubed.h"
 
 int quit_game(t_mlx *all)
 {

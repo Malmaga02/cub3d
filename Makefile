@@ -19,6 +19,7 @@ MLX_MAKE = ./mlx
 SRC = ./main.c \
 	./parsing/get_elements.c \
 	./parsing/get_map.c \
+	./parsing/get_player_info.c \
 	./parsing/get_t_map.c \
 	./parsing/is_map_playable.c \
 	./parsing/parse_file.c \

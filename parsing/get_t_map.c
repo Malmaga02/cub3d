@@ -11,6 +11,7 @@ t_map	*get_t_map(char *map_file)
 	if (!map->map || !is_map_playable(map->map))
 		return (free(map), error(ERROR_MAP), NULL);
 	map->rows = count_rows(map->map);
+	map = get_player_info(map); 
 	return (map);
 }
 // spaces_in_map da fare,

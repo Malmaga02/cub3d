@@ -104,6 +104,6 @@ void		error(int flag);
 	// Print
 void		print_mtx(char **mtx);
 // ----Start_game----
-void	start_game();
+void	start_game(t_mlx *pMlx);
 
 #endif

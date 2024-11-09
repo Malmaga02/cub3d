@@ -59,8 +59,8 @@ typedef struct	s_map
 
 typedef struct	s_player
 {
-	double		move_p_playerX;
-	double		move_p_playerY;
+	double		dir_playerX;
+	double		dir_playerY;
 }			t_player;
 
 typedef struct s_mlx

@@ -1,18 +1,5 @@
 #include "../cubed.h"
 
-//che tutti i caratteri siano 0 1 o N/S/W/E oppure spazi 
-//(che riempio con 0 se sono all'interno o con 1 se sono all'esterno)
-// che sia chiusa (tutti le linee devono avere 1 all'inizio e 1 alla fine)
-//che la prima e l'ultima linea siano solo composte da 1
-
-//ho creato la mia matrice - fare controlli del caso
-// prima e ultima riga solo 1 e i primi e ultimi char di ogni stringa solo 1 ||
-// presenza char diversi da 0 1 o N/S/W/E (non si possono ripetere) ||
-// chiusura della mappa, precisa (capire ancora come fare)
-// gestire gli spazi all'interno della mappa (gestirli come 0? )
-// necessita di algoritmo che mi controlla gli spazi, ovvero se ho degli spazi 
-//a indice x di una matrice, devo controllare che la mappa sia comunque chiusa
-
 bool	empty_line(char *str)
 {
 	int	i;

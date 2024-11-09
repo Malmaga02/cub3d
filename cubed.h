@@ -2,6 +2,11 @@
 # define CUBED_H
 
 # include <sys/time.h>
+# include "mlx.h"
+# include "mlx_int.h"
+# include <X11/Xlib.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -10,6 +15,18 @@
 # include <string.h>
 # include <stdbool.h>
 # include "libft/headers/libft.h"
+
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+
+# define KEY_UP 65362
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_DOWN 65364
+# define KEY_ESC 65307
+
 
 typedef enum	s_error
 {
@@ -85,5 +102,6 @@ void		error(int flag);
 	// Print
 void		print_mtx(char **mtx);
 // ----Start_game----
-	// Start_game
+void	start_game();
+
 #endif

@@ -8,7 +8,7 @@ t_map	*get_t_map(char *map_file)
 	if (!map)
 		return (error(MALLOC_E), NULL);
 	map->map = get_map(map_file);
-	if (!map->map || !is_map_playable(map->map)) //free della matrice all'interno della function free_mtx(map->map, count_rows(map->map)), 
+	if (!map->map || !is_map_playable(map->map))
 		return (free(map), error(ERROR_MAP), NULL);
 	map->rows = count_rows(map->map);
 	return (map);

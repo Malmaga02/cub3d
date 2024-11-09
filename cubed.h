@@ -57,6 +57,12 @@ typedef struct	s_map
 	int		pos_playerY;
 }			t_map;
 
+typedef struct	s_player
+{
+	double		move_p_playerX;
+	double		move_p_playerY;
+}			t_player;
+
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -68,6 +74,7 @@ typedef struct	s_all
 	t_element	*info_elements;
 	t_map		*map;
 	t_mlx		*window;
+	t_player	*player;
 }				t_all;
 
 // ----Parsing----

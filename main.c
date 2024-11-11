@@ -1,9 +1,4 @@
-#include "cubed.h"
-// all_info avra le info delle texture, della mappa e dell'init delle window mlx
-// altro?
-// tutti i possibili errori di mappa ecc li stampo in parse_and_handle
-// ritorno NULL, dopo aver liberato tutto per bene
-// start_game prepara e gestisce hook e loop per la finestra
+#include "cub3d.h"
 
 int main(int argc, char **argv)
 {

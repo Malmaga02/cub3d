@@ -1,4 +1,4 @@
-#include "../cubed.h"
+#include "cub3d.h"
 
 bool	correct_char_set(char **map) //aggiungere qui pos_player??
 {

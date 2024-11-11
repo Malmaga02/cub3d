@@ -33,7 +33,7 @@ all: $(NAME)
 
 $(NAME): $(SRC) 
 	@make all -s -C $(LIBFT_MAKE)
-	$(CC) $(CFLAGS) $(SRC) -L$(LIBFT_MAKE) -lft -Lmlx -lmlx  -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) -L$(LIBFT_MAKE) -lft $(MLX_INCLUDE) -o $(NAME)
 	@echo "$(COLOUR_BLUE) $(BOLD_TEXT) Run ./cub3d to start the game. $(RESET)";
 
 clean:
@@ -44,8 +44,6 @@ fclean: clean
 	@$(RM) $(NAME)
 
 re: fclean all
-
-
 
 # .SILENT:
 .PHONY: all clean fclean re

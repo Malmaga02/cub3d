@@ -1,5 +1,5 @@
-#ifndef CUBED_H
-# define CUBED_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include <sys/time.h>
 # include "mlx.h"

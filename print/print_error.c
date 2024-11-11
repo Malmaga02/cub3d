@@ -1,4 +1,4 @@
-#include "../cubed.h"
+#include "cub3d.h"
 
 void	error(int flag)
 {

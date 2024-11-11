@@ -1,4 +1,4 @@
-#include "../cubed.h"
+#include "cub3d.h"
 
 void	print_mtx(char **mtx)
 {

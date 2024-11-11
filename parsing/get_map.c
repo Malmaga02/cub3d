@@ -1,4 +1,4 @@
-#include "../cubed.h"
+#include "cub3d.h"
 
 bool	empty_line(char *str)
 {

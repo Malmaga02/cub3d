@@ -1,4 +1,4 @@
-#include "../cubed.h"
+#include "cub3d.h"
 
 bool	check_spaces(int c)
 {

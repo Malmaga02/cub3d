@@ -59,6 +59,21 @@ typedef struct	s_map
 	int		pos_playerY;
 }			t_map;
 
+typedef struct	s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_data;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}			t_point;
+
 typedef struct	s_player
 {
 	double		dir_playerX;
@@ -71,6 +86,7 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
+	t_data	frame;
 }			t_mlx;
 
 typedef struct	s_all

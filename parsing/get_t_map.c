@@ -1,15 +1,13 @@
 #include "../cubed.h"
 
-t_map	*get_t_map(char *map_file)
+t_map	get_t_map(char *map_file)
 {
-	t_map	*map;
+	t_map	map;
 
-	map = ft_calloc(1, sizeof(t_map));
-	if (!map)
-		return (error(MALLOC_E), NULL);
+	map = (t_map){0};
 	map->map = get_map(map_file);
 	if (!map->map || !is_map_playable(map->map))
-		return (free(map), error(ERROR_MAP), NULL);
+		return (error(ERROR_MAP), NULL);
 	map->rows = count_rows(map->map);
 	map = get_player_info(map); 
 	return (map);

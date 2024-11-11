@@ -1,6 +1,6 @@
 #include "../cubed.h"
 
-t_map *get_player_info(t_map *map)
+t_map get_player_info(t_map map)
 {
 	int row;
 	int col;

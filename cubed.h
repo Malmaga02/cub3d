@@ -77,9 +77,9 @@ typedef struct	s_all
 {
 	double		time;
 	double		old_time;
-	t_element	*info_elements;
-	t_map		*map;
-	t_mlx		*window;
+	t_element	info_elements;
+	t_map		map;
+	t_mlx		window;
 	t_player	*player;
 }				t_all;
 
@@ -87,7 +87,7 @@ typedef struct	s_all
 	// Get_elements
 char		*get_path_texture(char	*texture, char *flag);
 char		*get_info_element(char *name_file, char *flag);
-t_element	*get_elements(char *name_file);
+t_element	get_elements(char *name_file);
 	// Get_map
 bool		empty_line(char *str);
 bool		is_external_row(char *str);

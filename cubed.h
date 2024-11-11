@@ -95,9 +95,9 @@ char		**lst_to_mtx(t_list *head);
 char		*get_map_rows(int fd, int flag);
 char		**get_map(char *name_file);
 	// Get_player_info
-t_map		*get_player_info(t_map *map);
+t_map		get_player_info(t_map map);
 	// Get_t_map
-t_map		*get_t_map(char *map_file);
+t_map		get_t_map(char *map_file);
 	// Is_map_playable
 bool		correct_char_set(char **map);
 bool		is_surrounded(char **map, int row, int col);

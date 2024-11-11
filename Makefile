@@ -26,7 +26,9 @@ SRC = ./main.c \
 	./parsing/parse_utils.c \
 	./print/print_error.c \
 	./print/print.c \
-	./start_game/start_game.c
+	./game/start_game.c \
+	./game/movement.c \
+	./utils/free.c
 
 
 all: $(NAME)

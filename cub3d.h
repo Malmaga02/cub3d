@@ -132,7 +132,13 @@ bool		is_player(int c);
 void		error(int flag);
 	// Print
 void		print_mtx(char **mtx);
-// ----Start_game----
-void	start_game(t_mlx *pMlx);
+// ----Game----
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int			render(void *arg);
+void		start_game(t_mlx *pMlx);
+// ----Utils----
+	// Free
+int			quit_game(t_mlx *pMlx);
+int			close_window(int keycode, t_mlx *pMlx);
 
 #endif

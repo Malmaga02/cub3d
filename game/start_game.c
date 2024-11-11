@@ -28,25 +28,6 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	data->addr[idx + 3] = (color) & 0xFF; */
 }
 
-int quit_game(t_mlx *pMlx)
-{
-	// free di tutte le struct una volta arrivati a fine gioco e/o errore
-	mlx_destroy_window(pMlx->mlx, pMlx->mlx_win);
-	mlx_destroy_display(pMlx->mlx);
-	exit(0);
-	return 0;
-}
-
-int close_window(int keycode, t_mlx *pMlx)
-{
-	if (keycode == KEY_ESC)
-	{
-		ft_printf("GAME CLOSED SUCCESSFULLY");
-		quit_game(pMlx);
-	}
-	return (1);
-}
-
 int render(void *arg)
 {
 	t_mlx *ptr = (t_mlx *)arg;

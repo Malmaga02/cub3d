@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_elements.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/11 17:23:28 by chsassi           #+#    #+#             */
+/*   Updated: 2024/11/11 17:23:31 by chsassi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int counter = 0;
@@ -60,13 +72,11 @@ int render(void *arg)
 void start_game(t_mlx *pMlx)
 {
 	// call a fn per inizializzazione struct
-
 	pMlx->mlx = mlx_init();
 	pMlx->mlx_win = mlx_new_window(pMlx->mlx, 1080, 720, "cub3d");
 	pMlx->frame.img = mlx_new_image(pMlx->mlx, 1080, 720);
 	pMlx->frame.addr = mlx_get_data_addr(pMlx->frame.img, &pMlx->frame.bits_per_pixel, &pMlx->frame.line_length,
 								   &pMlx->frame.endian);
-
 	mlx_hook(pMlx->mlx_win, KeyPress, KeyPressMask, close_window, pMlx);
 	mlx_hook(pMlx->mlx_win, 17, 1L << 17, quit_game, pMlx);
 	mlx_loop_hook(pMlx->mlx, render, pMlx);

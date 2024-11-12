@@ -26,14 +26,14 @@ bool	extern_char(int c)
 	return (false);
 }
 
-bool is_inside_row(int row, int total_row)
+bool	is_inside_row(int row, int total_row)
 {
 	if (row > 0 && row < total_row - 1)
 		return (true);
 	return (false);
 }
 
-bool is_inside_col(int col, int len)
+bool	is_inside_col(int col, int len)
 {
 	if (col > 0 && col < len - 1)
 		return (true);

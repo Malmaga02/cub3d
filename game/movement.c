@@ -11,7 +11,3 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// preso da so_long, una volta che abbiamo settato le varie coordinate possiamo pensare
-// a come implementare questo file con le nostre struct
-

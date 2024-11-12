@@ -29,6 +29,7 @@ t_map get_player_info(t_map map)
 				map.pov_player = map.map[row][col];
 				map.pos_playerX = col;
 				map.pos_playerY = row;
+				map.map[row][col] = '0';
 			}
 			col++;
 		}

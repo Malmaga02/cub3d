@@ -7,6 +7,7 @@
 # include <X11/Xlib.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <X11/keysymdef.h>
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -16,19 +17,20 @@
 # include <stdbool.h>
 # include "libft/headers/libft.h"
 
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-
-# define KEY_UP 65362
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
-# define KEY_DOWN 65364
-# define KEY_ESC 65307
-
 # define SCREEN_W 720
 # define SCREEN_H 1080
+
+# define MINIMAP_TILE 8
+
+typedef enum	s_color
+{
+	RED = 0x00ff0000,
+	GREEN = 0x0000ff00,
+	BLUE = 0x000000ff,
+	WHITE = 0x00ffffff,
+	BLACK = 0x00000000,
+	GREY = 0x00a9a9a9
+}	t_color;
 
 typedef enum	s_error
 {
@@ -59,23 +61,26 @@ typedef struct	s_map
 	int		pos_playerY;
 }			t_map;
 
-typedef struct	s_data
+typedef struct s_event
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_data;
+	bool	walk_forw;
+	bool	walk_back;
+	bool	walk_left;
+	bool	walk_right;
+	bool	show_minimap;
+	bool	rotate_left;
+	bool	rotate_right;
+}			t_event;
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
+	double		x;
+	double		y;
 }			t_point;
 
 typedef struct	s_player
 {
+	t_point		pos;
 	double		dir_playerX;
 	double		dir_playerY;
 	double		plane_x;
@@ -86,7 +91,7 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
-	t_data	frame;
+	t_img	*frame;
 }			t_mlx;
 
 typedef struct	s_all
@@ -94,9 +99,10 @@ typedef struct	s_all
 	double		time;
 	double		old_time;
 	t_element	info_elements;
+	t_event		event;
 	t_map		map;
 	t_mlx		window;
-	t_player	*player;
+	t_player	player;
 }				t_all;
 
 // ----Parsing----
@@ -120,7 +126,7 @@ bool		is_surrounded(char **map, int row, int col);
 bool		closed_map(char **map);
 bool		is_map_playable(char **map);
 	// Parse_file
-t_all		*parse_file(char *name_file);
+t_all		*parse_file(t_all *all_info, char *name_file);
 	// Parse_utils
 bool		check_spaces(int c);
 bool		extern_char(int c);
@@ -133,12 +139,19 @@ void		error(int flag);
 	// Print
 void		print_mtx(char **mtx);
 // ----Game----
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int			render(void *arg);
-void		start_game(t_mlx *pMlx);
+int			game_loop(t_all *pAll);
+void		start_game(t_all *pAll);
+	// Events
+int			on_key_press(int key, t_all *ptr);
+int			on_key_release(int key, t_all *ptr);
+	// Minimap
+void		draw_minimap(t_all *ptr);
 // ----Utils----
 	// Free
-int			quit_game(t_mlx *pMlx);
-int			close_window(int keycode, t_mlx *pMlx);
+int			quit_game(t_all *pAll);
+int			close_window(int keycode, t_all *pAll);
+	// Drawing
+void		draw_pixel(t_all *data, int x, int y, int color);
+void		draw_rectangle(t_all *pAll, t_point start, t_point end, int color);
 
 #endif

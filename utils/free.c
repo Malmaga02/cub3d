@@ -43,21 +43,21 @@ void	free_images(t_container *pContainer)
 	mlx_destroy_image(pContainer->mlx, pContainer->pixel_reset);
 } */
 
-int	quit_game(t_mlx *pMlx)
+int	quit_game(t_all *pAll)
 {
 	// free di tutte le struct una volta arrivati a fine gioco e/o errore
-	mlx_destroy_window(pMlx->mlx, pMlx->mlx_win);
-	mlx_destroy_display(pMlx->mlx);
+	mlx_destroy_window(pAll->window.mlx, pAll->window.mlx_win);
+	mlx_destroy_display(pAll->window.mlx);
 	exit(0);
 	return 0;
 }
 
-int	close_window(int keycode, t_mlx *pMlx)
+int	close_window(int keycode, t_all *pAll)
 {
-	if (keycode == KEY_ESC)
+	if (keycode == XK_Escape)
 	{
 		ft_printf("GAME CLOSED SUCCESSFULLY");
-		quit_game(pMlx);
+		quit_game(pAll);
 	}
 	return (1);
 }

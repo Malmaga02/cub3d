@@ -16,7 +16,11 @@ COLOUR_GREEN = \033[0;32m
 LIBFT_MAKE = ./libft
 MLX_MAKE = ./mlx
 
-SRC = ./main.c \
+SRC = ./game/event.c \
+	./game/minimap.c \
+	./game/movement.c \
+	./game/start_game.c \
+	./main.c \
 	./parsing/get_elements.c \
 	./parsing/get_map.c \
 	./parsing/get_player_info.c \
@@ -24,12 +28,10 @@ SRC = ./main.c \
 	./parsing/is_map_playable.c \
 	./parsing/parse_file.c \
 	./parsing/parse_utils.c \
-	./print/print_error.c \
 	./print/print.c \
-	./game/start_game.c \
-	./game/movement.c \
+	./print/print_error.c \
+	./utils/drawing.c \
 	./utils/free.c
-
 
 all: $(NAME)
 

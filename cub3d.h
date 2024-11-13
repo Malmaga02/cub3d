@@ -19,6 +19,7 @@
 
 # define SCREEN_W 720
 # define SCREEN_H 1080
+# define PI 3.14159265358979
 
 # define MINIMAP_TILE 8
 
@@ -34,12 +35,17 @@ typedef enum	s_color
 
 typedef enum	s_error
 {
+	ARG_ERROR,
 	MALLOC_E,
 	OPEN_E,
 	MISSING_EL,
 	MISSING_MAP,
 	ERROR_MAP,
-	OPEN_MAP
+	OPEN_MAP,
+	INCORRECT_CHAR,
+	NO_PLAYER,
+	MULTIPLE_PLAYER,
+	NOT_PLAYABLE
 }	t_error;
 
 typedef struct	s_element
@@ -56,9 +62,6 @@ typedef struct	s_map
 {
 	char	**map;
 	int		rows;
-	int		pov_player;
-	int		pos_playerX;
-	int		pos_playerY;
 }			t_map;
 
 typedef struct s_event
@@ -81,10 +84,9 @@ typedef struct s_point
 typedef struct	s_player
 {
 	t_point		pos;
-	double		dir_playerX;
-	double		dir_playerY;
-	double		plane_x;
-	double		plane_y;
+	t_point		dir_player;
+	t_point		plane;
+	double		angle;
 }			t_player;
 
 typedef struct s_mlx
@@ -116,18 +118,18 @@ bool		is_external_row(char *str);
 char		**lst_to_mtx(t_list *head);
 char		*get_map_rows(int fd, int flag);
 char		**get_map(char *name_file);
-	// Get_player_info
-t_map		get_player_info(t_map map);
-	// Get_t_map
-t_map		get_t_map(char *map_file);
-	// Is_map_playable
+	// Get_player
+t_player	set_info_player(int x, int y, int pov, t_player player);
+	// Init_all
+t_player 	get_player_info(t_map *map)
+t_map		get_map_info(char *map_file);
+t_all		*init_all(t_all *all_info, char *name_file);
+	// Playability
 bool		correct_char_set(char **map);
 bool		is_surrounded(char **map, int row, int col);
 bool		closed_map(char **map);
 bool		is_map_playable(char **map);
-	// Parse_file
-t_all		*parse_file(t_all *all_info, char *name_file);
-	// Parse_utils
+	// Utils
 bool		check_spaces(int c);
 bool		extern_char(int c);
 bool		is_inside_row(int row, int total_row);
@@ -136,8 +138,6 @@ bool		is_player(int c);
 // ----Print----
 	// Print_error
 void		error(int flag);
-	// Print
-void		print_mtx(char **mtx);
 // ----Game----
 int			game_loop(t_all *pAll);
 void		start_game(t_all *pAll);

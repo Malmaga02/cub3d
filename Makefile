@@ -23,12 +23,10 @@ SRC = ./game/event.c \
 	./main.c \
 	./parsing/get_elements.c \
 	./parsing/get_map.c \
-	./parsing/get_player_info.c \
-	./parsing/get_t_map.c \
-	./parsing/is_map_playable.c \
-	./parsing/parse_file.c \
-	./parsing/parse_utils.c \
-	./print/print.c \
+	./parsing/get_player.c \
+	./parsing/init_all.c \
+	./parsing/playability.c \
+	./parsing/utils.c \
 	./print/print_error.c \
 	./utils/drawing.c \
 	./utils/free.c

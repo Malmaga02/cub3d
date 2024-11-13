@@ -17,6 +17,7 @@
 # include <stdbool.h>
 # include "libft/headers/libft.h"
 
+# define PI 3.14159265358979323846
 # define SCREEN_W 720
 # define SCREEN_H 1080
 # define ROTATION_SPEED 0.050

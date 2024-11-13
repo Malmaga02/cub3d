@@ -11,3 +11,21 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	rotate_player(t_all *mlx, int i)
+{
+	if (i == 0)
+	{
+		mlx->player->angle -= ROTATION_SPEED;
+		if (mlx->player->angle < 0)
+			mlx->player->angle += 2 * M_PI;
+	}
+	else
+	{
+		mlx->player->angle += ROTATION_SPEED;
+		if (mlx->player->angle > 2 * M_PI)
+			mlx->player->angle -= 2 * M_PI;
+	}
+	return (0);
+}
+

@@ -12,15 +12,15 @@
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
 	t_all	all_info;
 
 	all_info = (t_all){0};
 	ft_bzero(&all_info, sizeof(t_all));
-	if (argc != 2 || (argv && !argv[1]))
+	if (ac != 2 || (av && !av[1]))
 		return (error(ARG_ERROR), 0);
-	if (!init_all(&all_info, argv[1]))
+	if (!init_all(&all_info, av[1]))
 		return (1);
 	start_game(&all_info);
 	return (0);

@@ -33,22 +33,22 @@ t_player	set_info_player(int x, int y, int pov, t_player player)
 	if (pov == 'N')
 	{
 		player.plane.y = 0.66;
-		player.dir_player.y = 1;
+		player.dir.y = 1;
 	}
 	else if (pov == 'E')
 	{
 		player.plane.x = 0.66;
-		player.dir_player.x = 1;
+		player.dir.x = 1;
 	}
 	else if (pov == 'S')
 	{
 		player.plane.y = -0.66;
-		player.dir_player.y = -1;
+		player.dir.y = -1;
 	}
 	else if (pov == 'W')
 	{
 		player.plane.x = -0.66;
-		player.dir_player.x = -1;
+		player.dir.x = -1;
 	}
 	return (player);
 }

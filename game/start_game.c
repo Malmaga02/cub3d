@@ -22,9 +22,9 @@ int	game_loop(t_all *pAll)
 
 void	start_game(t_all *pAll)
 {
-	// call a fn per inizializzazione struct
 	pAll->window.mlx = mlx_init();
-	// if (pAll->window.mlx) TODO!
+	if (!pAll->window.mlx)
+		return (free_element(&pAll->info_elements), free_map(&pAll->map));
 	pAll->window.mlx_win = mlx_new_window(pAll->window.mlx, 1080, 720, "cub3d");
 	pAll->window.frame = mlx_new_image(pAll->window.mlx, 1080, 720);
 	mlx_hook(pAll->window.mlx_win, KeyPress, KeyPressMask, on_key_press, pAll);

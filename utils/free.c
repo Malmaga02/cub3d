@@ -42,16 +42,6 @@ int	quit_game(t_all *pAll)
 	mlx_destroy_image(pAll->window.mlx, pAll->window.frame);
 	mlx_destroy_window(pAll->window.mlx, pAll->window.mlx_win);
 	mlx_destroy_display(pAll->window.mlx);
-	exit(0);
-	return 0;
+	return (exit(0), 0);
 }
 
-int	close_window(int keycode, t_all *pAll)
-{
-	if (keycode == XK_Escape)
-	{
-		ft_printf("GAME CLOSED SUCCESSFULLY");
-		quit_game(pAll);
-	}
-	return (1);
-}

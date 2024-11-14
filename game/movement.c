@@ -6,26 +6,35 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 23:20:33 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/13 09:48:18 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:44:58 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	rotate_player(t_all *cubed, int i)
+int	rotate_player(t_all *cubed)
 {
-	if (i == 0)
+	double	old_dirx;
+	double	old_planex;
+
+	if (cubed->event.rotate_right)
 	{
-		cubed->player.angle -= ROTATION_SPEED;
-		if (cubed->player.angle < 0)
-			cubed->player.angle += 2 * PI;
-	}
-	else
-	{
-		cubed->player.angle += ROTATION_SPEED;
-		if (cubed->player.angle > 2 * PI)
-			cubed->player.angle -= 2 * PI;
-	}
+		old_dirx = cubed->player.dir.x;
+		cubed->player.dir.x = cubed->player.dir.x * cos(-ROT) - cubed->player.dir.y * sin(-ROT);
+		cubed->player.dir.y = old_dirx * sin(-ROT) + cubed->player.dir.y * cos(-ROT);
+    	old_planex = cubed->player.plane.x;
+    	cubed->player.plane.x = cubed->player.plane.x * cos(-ROT) - cubed->player.plane.y * sin(-ROT);
+    	cubed->player.plane.y = old_planex * sin(-ROT) + cubed->player.plane.y * cos(-ROT);
+    }
+    if (cubed->event.rotate_left)
+    {
+    	old_dirx = cubed->player.dir.x;
+    	cubed->player.dir.x = cubed->player.dir.x * cos(ROT) - cubed->player.dir.y * sin(ROT);
+    	cubed->player.dir.y = cubed->player.dir.x * sin(ROT) + cubed->player.dir.y * cos(ROT);
+    	old_planex = cubed->player.plane.x;
+    	cubed->player.plane.x = cubed->player.plane.x * cos(ROT) - cubed->player.plane.y * sin(ROT);
+    	cubed->player.plane.y = old_planex * sin(ROT) + cubed->player.plane.y * cos(ROT);
+    }
 	return (0);
 }
 

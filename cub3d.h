@@ -17,9 +17,11 @@
 # include <stdbool.h>
 # include "libft/headers/libft.h"
 
+# define PI 3.14159265358979323846
 # define SCREEN_W 720
 # define SCREEN_H 1080
-# define PI 3.14159265358979
+# define ROTATION_SPEED 0.050
+# define PLAYER_SPEED 4.5
 
 # define MINIMAP_TILE 8
 
@@ -91,9 +93,9 @@ typedef struct	s_player
 
 typedef struct s_mlx
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_img	*frame;
+	void		*mlx;
+	void		*mlx_win;
+	t_img		*frame;
 }			t_mlx;
 
 typedef struct	s_all
@@ -145,6 +147,8 @@ void		start_game(t_all *pAll);
 	// Events
 int			on_key_press(int key, t_all *ptr);
 int			on_key_release(int key, t_all *ptr);
+	// Movement
+int			rotate_player(t_all *mlx, int i);
 	// Minimap
 void		draw_minimap(t_all *ptr);
 // ----Utils----

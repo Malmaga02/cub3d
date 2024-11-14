@@ -1,45 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_map_playable.c                                   +:      :+:    :+:   */
+/*   playability.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalmari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:23:28 by mgalmari          #+#    #+#             */
-/*   Updated: 2024/11/11 17:23:31 by mgalmari         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:09:18 by mgalmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	correct_char_set(char **map) //aggiungere qui pos_player??
+bool	correct_char_set(char **map)
 {
-	int	i;
-	int	j;
-	int	player_found;
+	int		row;
+	int		col;
+	bool	player;
 
-	i = 0;
-	j = 0;
-	player_found = 0;
-	while (map && map[j])
+	row = 0;
+	col = 0;
+	player = false;
+	while (map && map[row])
 	{
-		i = 0;
-		while (map[j] && map[j][i])
+		col = 0;
+		while (map[row] && map[row][col])
 		{
-			if (is_player(map[j][i]) && player_found == 0)
-					player_found = 1;
-			else if (is_player(map[j][i]) && player_found == 1)
-				return (ft_putstr_fd("Error: double player char found.\n", 2), false);
-			if (!(map[j][i] == '0' || map[j][i] == '1' || map[j][i] == 'N'
-				|| map[j][i] == 'S' || map[j][i] == 'E' || map[j][i] == 'W'
-				|| map[j][i] == '\t' || map[j][i] == ' ' || map[j][i] == '\n'))
-				return (ft_putstr_fd("Error: not allowed char found.\n", 2), false);
-			i++;
+			if (is_player(map[row][col]) && player == false)
+				player = true;
+			else if (is_player(map[row][col]) && player == true)
+				return (error(MULTIPLE_PLAYER), false);
+			if (!is_char_set(map[row][col]))
+				return (error(INCORRECT_CHAR), false);
+			col++;
 		}
-		j++;
+		row++;
 	}
-	if (player_found == 0)
-		return (ft_putstr_fd("Error: player char not found.\n", 2), false);
+	if (player == 0)
+		return (error(NO_PLAYER), false);
 	return (true);
 }
 
@@ -71,11 +69,11 @@ bool	closed_map(char **map)
 		col = 0;
 		len = ft_strlen(map[row]);
 		if (!extern_char(map[row][col]) || !extern_char(map[row][len - 1]))
-			return (ft_putstr_fd("Error: the given map is open.\n", 2), false);
+			return (error(OPEN_MAP), false);
 		while (map[row] && map[row][col])
 		{
 			if (map[row][col] == '0' && !is_surrounded(map, row, col))
-				return (ft_putstr_fd("Error: the given map is open.\n", 2), false);
+				return (error(OPEN_MAP), false);
 			col++;
 		}
 		row++;
@@ -83,20 +81,16 @@ bool	closed_map(char **map)
 	return (true);
 }
 
-// playability --> mappa chiusa: prima e ultima row tutti 1
-//		il primo e ultimo chr prima di spazi o alla fine di ogni row == 1
-// --> un solo giocatore (N S E W), no char diversi da quelli concessi
-
-bool	is_map_playable(char **map) //free qui della matrice se errore
+bool	is_map_playable(char **map)
 {
 	int	rows;
 
 	rows = count_rows(map);
 	if (!is_external_row(map[0]) || !is_external_row(map[rows - 1]))
-		return (free_mtx(map, rows), error(OPEN_MAP), false);
+		return (free_mtx(map, rows), error(NOT_PLAYABLE), false);
 	if (!closed_map(map))
-		return (free_mtx(map, rows), error(OPEN_MAP), false);
+		return (free_mtx(map, rows), error(NOT_PLAYABLE), false);
 	if (!correct_char_set(map))
-		return (free_mtx(map, rows), error(OPEN_MAP), false);
+		return (free_mtx(map, rows), error(NOT_PLAYABLE), false);
 	return (true);
 }

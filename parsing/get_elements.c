@@ -6,7 +6,7 @@
 /*   By: mgalmari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:23:28 by mgalmari          #+#    #+#             */
-/*   Updated: 2024/11/11 17:23:31 by mgalmari         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:09:18 by mgalmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*get_info_element(char *name_file, char *flag)
 		texture = get_next_line(fd);
 	}
 	close(fd);
-	if (!texture || (texture && !texture[0])) //devo freearla in questo caso?
+	if (!texture || (texture && !texture[0]))
 		return (free(texture), error(MISSING_EL), NULL);
 	return (get_path_texture(texture, flag));
 }

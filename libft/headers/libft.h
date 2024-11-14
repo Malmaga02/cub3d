@@ -27,6 +27,7 @@
 # include <fcntl.h>
 # include <stdint.h>
 # include <sys/stat.h>
+# include <stdbool.h>
 
 typedef struct s_list
 {
@@ -52,6 +53,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
 // char_check
+bool	check_spaces(int c);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);

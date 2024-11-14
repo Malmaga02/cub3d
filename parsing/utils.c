@@ -1,39 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_player_info.c                                  :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalmari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:23:28 by mgalmari          #+#    #+#             */
-/*   Updated: 2024/11/11 17:23:31 by mgalmari         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:09:18 by mgalmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_map get_player_info(t_map map)
+bool	is_char_set(int c)
 {
-	int row;
-	int col;
+	if (!(extern_char(c) || is_player(c) || c == '0'))
+		return (false);
+	return (true);
+}
 
-	row = 0;
-	col = 0;
-	while (map.map && map.map[row])
-	{
-		col = 0;
-		while (map.map[row] && map.map[row][col])
-		{
-			if (is_player(map.map[row][col]))
-			{
-				map.pov_player = map.map[row][col];
-				map.pos_playerX = col;
-				map.pos_playerY = row;
-				map.map[row][col] = '0';
-			}
-			col++;
-		}
-		row++;
-	}
-	return (map);
+bool	extern_char(int c)
+{
+	if (check_spaces(c) || c == '1')
+		return (true);
+	return (false);
+}
+
+bool	is_inside_row(int row, int total_row)
+{
+	if (row > 0 && row < total_row - 1)
+		return (true);
+	return (false);
+}
+
+bool	is_inside_col(int col, int len)
+{
+	if (col > 0 && col < len - 1)
+		return (true);
+	return (false);
+}
+
+bool	is_player(int c)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (true);
+	return (false);
 }

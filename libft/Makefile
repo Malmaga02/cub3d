@@ -30,6 +30,7 @@ SRC = ./allocating_strings/ft_calloc.c \
 		./allocating_strings/ft_strlcpy.c \
 		./allocating_strings/ft_strtrim.c \
 		./allocating_strings/ft_substr.c \
+		./char_check/check_spaces.c \
 		./char_check/ft_isalnum.c \
  		./char_check/ft_isalpha.c \
 		./char_check/ft_isascii.c \

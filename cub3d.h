@@ -152,8 +152,10 @@ int			rotate_player(t_all *cubed);
 void		draw_minimap(t_all *ptr);
 // ----Utils----
 	// Free
+void		free_element(t_element *pElement);
+void		free_map(t_map *pMap);
 int			quit_game(t_all *pAll);
-int			close_window(int keycode, t_all *pAll);
+
 	// Drawing
 void		draw_pixel(t_all *data, int x, int y, int color);
 void		draw_rectangle(t_all *pAll, t_point start, t_point end, int color);

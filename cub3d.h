@@ -20,7 +20,7 @@
 # define PI 3.14159265358979323846
 # define SCREEN_W 720
 # define SCREEN_H 1080
-# define ROTATION_SPEED 0.050
+# define ROT 0.050
 # define PLAYER_SPEED 4.5
 
 # define MINIMAP_TILE 8
@@ -86,7 +86,7 @@ typedef struct s_point
 typedef struct	s_player
 {
 	t_point		pos;
-	t_point		dir_player;
+	t_point		dir;
 	t_point		plane;
 	double		angle;
 }			t_player;
@@ -147,7 +147,7 @@ void		start_game(t_all *pAll);
 int			on_key_press(int key, t_all *ptr);
 int			on_key_release(int key, t_all *ptr);
 	// Movement
-int			rotate_player(t_all *mlx, int i);
+int			rotate_player(t_all *cubed);
 	// Minimap
 void		draw_minimap(t_all *ptr);
 // ----Utils----

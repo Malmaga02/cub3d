@@ -50,14 +50,14 @@ t_map	get_map_info(char *map_file)
 	return (map);
 }
 
-t_all	*init_all(t_all *all_info, char *name_file)
+bool	init_all(t_all *all_info, char *name_file)
 {
 	all_info->info_elements = get_elements(name_file);
 	if (!all_info->info_elements.texture_nord)
-		return (NULL);
+		return (false);
 	all_info->map = get_map_info(name_file);
 	if (!all_info->map.map)
-		return (NULL);
+		return (false);
 	all_info->player = get_player_info(&all_info->map);
-	return (all_info);
+	return (true);
 }

@@ -14,7 +14,7 @@
 
 bool	is_char_set(int c)
 {
-	if (!(extern_char(c) || is_player(c) || c == 0))
+	if (!(extern_char(c) || is_player(c) || c == '0'))
 		return (false);
 	return (true);
 }

@@ -121,16 +121,16 @@ char		**get_map(char *name_file);
 	// Get_player
 t_player	set_info_player(int x, int y, int pov, t_player player);
 	// Init_all
-t_player 	get_player_info(t_map *map)
+t_player	get_player_info(t_map *map);
 t_map		get_map_info(char *map_file);
-t_all		*init_all(t_all *all_info, char *name_file);
+bool		init_all(t_all *all_info, char *name_file);
 	// Playability
 bool		correct_char_set(char **map);
 bool		is_surrounded(char **map, int row, int col);
 bool		closed_map(char **map);
 bool		is_map_playable(char **map);
 	// Utils
-bool		check_spaces(int c);
+bool		is_char_set(int c);
 bool		extern_char(int c);
 bool		is_inside_row(int row, int total_row);
 bool		is_inside_col(int col, int len);

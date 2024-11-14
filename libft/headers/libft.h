@@ -27,6 +27,7 @@
 # include <fcntl.h>
 # include <stdint.h>
 # include <sys/stat.h>
+# include <stdbool.h>
 
 typedef struct s_list
 {

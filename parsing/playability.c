@@ -32,7 +32,7 @@ bool	correct_char_set(char **map)
 				return (error(MULTIPLE_PLAYER), false);
 			if (!is_char_set(map[row][col]))
 				return (error(INCORRECT_CHAR), false);
-			i++;
+			col++;
 		}
 		row++;
 	}

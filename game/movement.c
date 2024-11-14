@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 23:20:33 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/14 16:10:28 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:44:58 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int	rotate_player(t_all *cubed)
     	cubed->player.plane.x = cubed->player.plane.x * cos(ROT) - cubed->player.plane.y * sin(ROT);
     	cubed->player.plane.y = old_planex * sin(ROT) + cubed->player.plane.y * cos(ROT);
     }
+	return (0);
 }
 

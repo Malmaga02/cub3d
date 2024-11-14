@@ -23,7 +23,7 @@
 # define ROT 0.050
 # define PLAYER_SPEED 4.5
 
-# define MINIMAP_TILE 8
+# define MINIMAP_TILE 6
 
 typedef enum	s_color
 {

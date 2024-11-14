@@ -57,7 +57,7 @@ char	**lst_to_mtx(t_list *head)
 	{
 		map[i] = ft_strdup((char *)head->content);
 		if (!map[i])
-			return (free_mtx(map, i), ft_lstclear(&head, free), NULL);
+			return (free_mtx(map), ft_lstclear(&head, free), NULL);
 		i++;
 		head = head->next;
 	}
@@ -70,13 +70,13 @@ char	*get_map_rows(int fd, int flag)
 	char	*read_line;
 	char	*content;
 
-	read_line = get_next_line(fd);
+	read_line = gnl(fd);
 	if (flag == 0)
 	{
 		while (read_line && !is_external_row(read_line))
 		{
 			free(read_line);
-			read_line = get_next_line(fd);
+			read_line = gnl(fd);
 			if (!read_line)
 				return (error(MISSING_MAP), free(read_line), NULL);
 		}

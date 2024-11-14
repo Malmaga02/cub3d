@@ -30,7 +30,7 @@ void	free_element(t_element *pElement)
 
 void	free_map(t_map *pMap)
 {
-	free_mtx(pMap->map, pMap->rows);
+	free_mtx(pMap->map);
 	pMap->map = NULL;
 	pMap->rows = 0;
 }

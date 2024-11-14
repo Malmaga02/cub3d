@@ -86,10 +86,8 @@ typedef struct s_point
 typedef struct	s_player
 {
 	t_point		pos;
-	double		dir_playerX;
-	double		dir_playerY;
-	double		plane_x;
-	double		plane_y;
+	t_point		dir_player;
+	t_point		plane;
 	double		angle;
 }			t_player;
 

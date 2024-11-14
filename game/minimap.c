@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_gui.c                                      :+:      :+:    :+:   */
+/*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chsassi <chsassi@student.42firenze.it>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -51,7 +51,7 @@ void	draw_minimap(t_all *pAll)
 		cols = -1;
 		while (pAll->map.map[rows][++cols])
 			render_minimap_pixel(pAll, cols, rows,
-				get_map_char(pAll, cols, rows));
+		get_map_char(pAll, cols, rows));
 	}
 	render_minimap_pixel(pAll, pAll->player.pos.x, pAll->player.pos.y, 'N');
 }

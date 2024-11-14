@@ -93,9 +93,9 @@ typedef struct	s_player
 
 typedef struct s_mlx
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_img	*frame;
+	void		*mlx;
+	void		*mlx_win;
+	t_img		*frame;
 }			t_mlx;
 
 typedef struct	s_all

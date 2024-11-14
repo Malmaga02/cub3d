@@ -12,40 +12,34 @@
 
 #include "cub3d.h"
 
-// da implementare con le nostre struct, stessa logica
-
-/* void	free_map(t_container *pContainer)
+void	free_element(t_element *pElement)
 {
-	free_mtx(pContainer->map.map);
-	exit (0);
+	if (pElement->texture_nord)
+		free(pElement->texture_nord);
+	if (pElement->texture_sud)
+		free(pElement->texture_sud);
+	if (pElement->texture_est)
+		free(pElement->texture_est);
+	if (pElement->texture_ovest)
+		free(pElement->texture_ovest);
+	if (pElement->ceiling)
+		free(pElement->ceiling);
+	if (pElement->floor)
+		free(pElement->floor);
 }
 
-void	free_position(t_container *pContainer)
+void	free_map(t_map *pMap)
 {
-	free_mtx(pContainer->map.map);
-	free(pContainer->map.collectible_pos);
-	free(pContainer->map.enemy_pos);
-	exit (0);
+	free_mtx(pMap->map, pMap->rows);
+	pMap->map = NULL;
+	pMap->rows = 0;
 }
-
-void	free_images(t_container *pContainer)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-		mlx_destroy_image(pContainer->mlx, pContainer->player[i++]);
-	mlx_destroy_image(pContainer->mlx, pContainer->floor);
-	mlx_destroy_image(pContainer->mlx, pContainer->wall);
-	mlx_destroy_image(pContainer->mlx, pContainer->exit);
-	mlx_destroy_image(pContainer->mlx, pContainer->collectible);
-	mlx_destroy_image(pContainer->mlx, pContainer->enemy);
-	mlx_destroy_image(pContainer->mlx, pContainer->pixel_reset);
-} */
 
 int	quit_game(t_all *pAll)
 {
-	// free di tutte le struct una volta arrivati a fine gioco e/o errore
+	free_element(&pAll->info_elements);
+	free_map(&pAll->map);
+	mlx_destroy_image(pAll->window.mlx, pAll->window.frame);
 	mlx_destroy_window(pAll->window.mlx, pAll->window.mlx_win);
 	mlx_destroy_display(pAll->window.mlx);
 	exit(0);

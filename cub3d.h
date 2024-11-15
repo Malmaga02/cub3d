@@ -15,7 +15,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <stdbool.h>
-# include "libft/headers/libft.h"
+# include "libft.plus/includes/libft.h"
 
 # define PI 3.14159265358979323846
 # define SCREEN_W 720
@@ -122,6 +122,7 @@ char		**lst_to_mtx(t_list *head);
 char		*get_map_rows(int fd, int flag);
 char		**get_map(char *name_file);
 	// Get_player
+t_player	set_pos_angle(int x, int y, int pov, t_player player);
 t_player	set_info_player(int x, int y, int pov, t_player player);
 	// Init_all
 t_player	get_player_info(t_map *map);

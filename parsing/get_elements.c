@@ -31,7 +31,7 @@ char	*get_path_texture(char	*texture, char *flag)
 		i++;
 		index++;
 	}
-	return (info);
+	return (free(texture), info);
 }
 
 char	*get_info_element(char *name_file, char *flag)
@@ -42,11 +42,11 @@ char	*get_info_element(char *name_file, char *flag)
 	fd = open(name_file, O_RDONLY);
 	if (fd == -1)
 		return (close(fd), error(OPEN_E), NULL);
-	texture = get_next_line(fd);
+	texture = gnl(fd);
 	while (texture && ft_strncmp(texture, flag, ft_strlen(flag)))
 	{
 		free(texture);
-		texture = get_next_line(fd);
+		texture = gnl(fd);
 	}
 	close(fd);
 	if (!texture || (texture && !texture[0]))

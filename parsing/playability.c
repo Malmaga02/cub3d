@@ -87,10 +87,10 @@ bool	is_map_playable(char **map)
 
 	rows = count_rows(map);
 	if (!is_external_row(map[0]) || !is_external_row(map[rows - 1]))
-		return (free_mtx(map, rows), error(NOT_PLAYABLE), false);
+		return (free_mtx(map), error(NOT_PLAYABLE), false);
 	if (!closed_map(map))
-		return (free_mtx(map, rows), error(NOT_PLAYABLE), false);
+		return (free_mtx(map), error(NOT_PLAYABLE), false);
 	if (!correct_char_set(map))
-		return (free_mtx(map, rows), error(NOT_PLAYABLE), false);
+		return (free_mtx(map), error(NOT_PLAYABLE), false);
 	return (true);
 }

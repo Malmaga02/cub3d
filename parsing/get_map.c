@@ -45,21 +45,23 @@ bool	is_external_row(char *str)
 char	**lst_to_mtx(t_list *head)
 {
 	char	**map;
+	t_list	*tmp;
 	int		size;
 	int		i;
 
-	size = ft_lstsize(head);
 	i = 0;
+	size = ft_lstsize(head);
+	tmp = head;
 	map = ft_calloc(size + 1, sizeof(char *));
 	if (!map)
 		return (NULL);
-	while (head && i < size)
+	while (tmp && i < size)
 	{
-		map[i] = ft_strdup((char *)head->content);
+		map[i] = ft_strdup((char *)tmp->content);
 		if (!map[i])
-			return (free_mtx(map, i), ft_lstclear(&head, free), NULL);
+			return (free_mtx(map), ft_lstclear(&head, free), NULL);
 		i++;
-		head = head->next;
+		tmp = tmp->next;
 	}
 	map[i] = NULL;
 	return (ft_lstclear(&head, free), map);
@@ -70,13 +72,13 @@ char	*get_map_rows(int fd, int flag)
 	char	*read_line;
 	char	*content;
 
-	read_line = get_next_line(fd);
+	read_line = gnl(fd);
 	if (flag == 0)
 	{
 		while (read_line && !is_external_row(read_line))
 		{
 			free(read_line);
-			read_line = get_next_line(fd);
+			read_line = gnl(fd);
 			if (!read_line)
 				return (error(MISSING_MAP), free(read_line), NULL);
 		}

@@ -1,7 +1,7 @@
 NAME = cub3d
 
 CC = cc
-INCLUDES = ./libft
+INCLUDES = ./libft.plus
 CFLAGS = -Wextra -Werror -Wall -g -I$(INCLUDES)  -I. -Imlx
 MLX_INCLUDE = -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz
 AR = ar rc $(NAME)
@@ -13,7 +13,7 @@ ITALIC_TEXT = $(shell tput sitm)
 COLOUR_BLUE = \033[0;34m
 COLOUR_GREEN = \033[0;32m
 
-LIBFT_MAKE = ./libft
+LIBFT_MAKE = ./libft.plus
 MLX_MAKE = ./mlx
 
 SRC = ./game/event.c \

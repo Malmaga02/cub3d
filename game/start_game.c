@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:23:28 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/12 18:13:00 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/11/15 19:58:03 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	game_loop(t_all *pAll)
 {
+	move_player(pAll);
 	draw_minimap(pAll);
 	mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win,
 		pAll->window.frame, 0, 0);

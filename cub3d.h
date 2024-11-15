@@ -21,7 +21,7 @@
 # define SCREEN_W 720
 # define SCREEN_H 1080
 # define ROT 0.050
-# define PLAYER_SPEED 0.01
+# define PLAYER_SPEED 0.001
 
 # define MINIMAP_TILE 25
 

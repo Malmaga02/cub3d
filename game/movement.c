@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 19:32:08 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/11/15 20:14:40 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/15 20:37:17 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,20 @@
 bool	is_new_x_valid(t_all *cubed, double new_x)
 {
 	int	map_x;
+	int	current_map_y;
 
-	map_x = (int)new_x;
+	current_map_y = (int)floor(cubed->player.pos.y);
+	map_x = (int)floor(new_x);
 	return (cubed->map.map[(int)cubed->player.pos.y][map_x] != '1');
 }
 
 bool	is_new_y_valid(t_all *cubed, double new_y)
 {
     int map_y;
+	int current_map_x;
 
-	map_y = (int)new_y;
+	current_map_x = (int)floor(cubed->player.pos.x);
+	map_y = (int)floor(new_y);
     return (cubed->map.map[map_y][(int)cubed->player.pos.x] != '1');
 }
 

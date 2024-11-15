@@ -149,6 +149,7 @@ int			on_key_press(int key, t_all *ptr);
 int			on_key_release(int key, t_all *ptr);
 	// Movement
 int			rotate_player(t_all *cubed);
+int			rot_action(t_all *cubed, int old_dirx, int old_planex, double rot);
 	// Minimap
 void		draw_minimap(t_all *ptr);
 // ----Utils----

@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 23:20:33 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/15 14:22:38 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/15 16:37:17 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ int	rot_action(t_all *cubed, int old_dirx, int old_planex, double rot)
 	return (0);
 }
 
+int	move_player(t_all *cubed)
+{
+	double	new_x;
+	double	new_y;
+
+	
+}
+
 int	rotate_player(t_all *cubed)
 {
 	double	old_dirx;
@@ -41,7 +49,3 @@ int	rotate_player(t_all *cubed)
 	return (0);
 }
 
-// int	move_player(t_all *cubed)
-// {
-	
-// }

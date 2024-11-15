@@ -21,6 +21,7 @@ SRC = ./algo/calculations.c \
 	./game/event.c \
 	./game/minimap.c \
 	./game/movement.c \
+	./game/rotation.c \
 	./game/start_game.c \
 	./main.c \
 	./parsing/get_elements.c \

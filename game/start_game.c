@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:23:28 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/12 18:13:00 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/11/15 20:51:28 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void move(t_all *pAll)
 
 int	game_loop(t_all *pAll)
 {
-	move(pAll);
+	move_player(pAll);
 	raycast(pAll);
 	// draw_rectangle(pAll, (t_point){0, 0}, (t_point){pAll->window.frame->width, pAll->window.frame->height}, BLACK);
 	// mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win,

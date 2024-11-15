@@ -33,9 +33,9 @@
 # define SCREEN_W 1080
 # define SCREEN_H 720
 # define ROT 0.050
-# define PLAYER_SPEED 4.5
+# define PLAYER_SPEED 0.001
 
-# define MINIMAP_TILE 6
+# define MINIMAP_TILE 25
 
 typedef enum	s_color
 {
@@ -196,6 +196,11 @@ int			on_key_press(int key, t_all *ptr);
 int			on_key_release(int key, t_all *ptr);
 	// Movement
 int			rotate_player(t_all *cubed);
+int			rot_action(t_all *cubed, int old_dirx, int old_planex, double rot);
+bool		is_new_x_valid(t_all *cubed, double new_x);
+bool		is_new_y_valid(t_all *cubed, double new_y);
+void		get_new_position(t_all *cubed, double *new_x, double *new_y);
+int			move_player(t_all *cubed);
 	// Minimap
 char		get_map_char(t_all *pAll, int x, int y);
 void		draw_minimap(t_all *ptr);

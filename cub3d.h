@@ -96,6 +96,7 @@ typedef struct s_mlx
 	void		*mlx;
 	void		*mlx_win;
 	t_img		*frame;
+	t_img		*weapon;
 }			t_mlx;
 
 typedef struct	s_all
@@ -142,7 +143,7 @@ bool		is_player(int c);
 void		error(int flag);
 // ----Game----
 int			game_loop(t_all *pAll);
-void		start_game(t_all *pAll);
+int			start_game(t_all *pAll);
 	// Events
 int			on_key_press(int key, t_all *ptr);
 int			on_key_release(int key, t_all *ptr);
@@ -157,6 +158,8 @@ void		free_map(t_map *pMap);
 int			quit_game(t_all *pAll);
 
 	// Drawing
+t_img		*load_texture(void *mlx, char *file_path);
+void		render_weapon(t_all *pAll);
 void		draw_pixel(t_all *data, int x, int y, int color);
 void		draw_rectangle(t_all *pAll, t_point start, t_point end, int color);
 

@@ -31,7 +31,7 @@ char	*get_path_texture(char	*texture, char *flag)
 		i++;
 		index++;
 	}
-	return (info);
+	return (free(texture), info);
 }
 
 char	*get_info_element(char *name_file, char *flag)

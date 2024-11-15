@@ -45,21 +45,23 @@ bool	is_external_row(char *str)
 char	**lst_to_mtx(t_list *head)
 {
 	char	**map;
+	t_list	*tmp;
 	int		size;
 	int		i;
 
-	size = ft_lstsize(head);
 	i = 0;
+	size = ft_lstsize(head);
+	tmp = head;
 	map = ft_calloc(size + 1, sizeof(char *));
 	if (!map)
 		return (NULL);
-	while (head && i < size)
+	while (tmp && i < size)
 	{
-		map[i] = ft_strdup((char *)head->content);
+		map[i] = ft_strdup((char *)tmp->content);
 		if (!map[i])
 			return (free_mtx(map), ft_lstclear(&head, free), NULL);
 		i++;
-		head = head->next;
+		tmp = tmp->next;
 	}
 	map[i] = NULL;
 	return (ft_lstclear(&head, free), map);

@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 23:20:33 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/15 13:56:28 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/15 14:22:38 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,8 @@ int	rotate_player(t_all *cubed)
 		rot_action(cubed, old_dirx, old_planex, ROT);
 	return (0);
 }
+
+// int	move_player(t_all *cubed)
+// {
+	
+// }

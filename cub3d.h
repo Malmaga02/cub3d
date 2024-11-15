@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/15 16:37:17 by chsassi           #+#    #+#             */
+/*   Updated: 2024/11/15 16:37:19 by chsassi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -89,7 +101,23 @@ typedef struct	s_player
 	t_point		dir;
 	t_point		plane;
 	double		angle;
+	bool		collision;
 }			t_player;
+
+typedef struct	s_algo
+{
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	int 		step_x;
+	int 		step_y;
+	bool		collision;
+	bool		side_collision;
+}			t_algo;
 
 typedef struct s_mlx
 {

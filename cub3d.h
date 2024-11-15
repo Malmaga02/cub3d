@@ -30,8 +30,8 @@
 # include "libft.plus/includes/libft.h"
 
 # define PI 3.14159265358979323846
-# define SCREEN_W 720
-# define SCREEN_H 1080
+# define SCREEN_W 1080
+# define SCREEN_H 720
 # define ROT 0.050
 # define PLAYER_SPEED 4.5
 
@@ -115,8 +115,16 @@ typedef struct	s_algo
 	double		perp_wall_dist;
 	int 		step_x;
 	int 		step_y;
+	int			map_x;
+	int			map_y;
+	double		camera_x;
 	bool		collision;
 	bool		side_collision;
+	int			width;
+	int			height;
+	int			draw_start;
+	int			draw_end;
+	int			line_height;
 }			t_algo;
 
 typedef struct s_mlx
@@ -127,15 +135,24 @@ typedef struct s_mlx
 	t_img		*weapon;
 }			t_mlx;
 
+typedef struct	s_pixel
+{
+	t_color		wall;
+	t_color		ceiling;
+	t_color		floor;
+}				t_pixel;
+
 typedef struct	s_all
 {
 	double		time;
 	double		old_time;
 	t_element	info_elements;
 	t_event		event;
+	t_algo		algo;
 	t_map		map;
 	t_mlx		window;
 	t_player	player;
+	t_pixel		colors;
 }				t_all;
 
 // ----Parsing----
@@ -155,6 +172,7 @@ t_player	set_info_player(int x, int y, int pov, t_player player);
 	// Init_all
 t_player	get_player_info(t_map *map);
 t_map		get_map_info(char *map_file);
+void		init_algo(t_all *pAll);
 bool		init_all(t_all *all_info, char *name_file);
 	// Playability
 bool		correct_char_set(char **map);
@@ -179,17 +197,25 @@ int			on_key_release(int key, t_all *ptr);
 	// Movement
 int			rotate_player(t_all *cubed);
 	// Minimap
+char		get_map_char(t_all *pAll, int x, int y);
 void		draw_minimap(t_all *ptr);
 // ----Utils----
 	// Free
 void		free_element(t_element *pElement);
 void		free_map(t_map *pMap);
 int			quit_game(t_all *pAll);
-
 	// Drawing
 t_img		*load_texture(void *mlx, char *file_path);
 void		render_weapon(t_all *pAll);
-void		draw_pixel(t_all *data, int x, int y, int color);
+void		draw_pixel(t_all *pAll, int x, int y, int color);
 void		draw_rectangle(t_all *pAll, t_point start, t_point end, int color);
+void		draw_line(t_all *pAll, int col);
+	// Algo
+void		dda(t_all *pAll);
+void		calculate_ray(t_all *pAll);
+void		check_perp_distance(t_all *pAll);
+void		set_info_line(t_all *pAll, int col);
+void		raycast(t_all *pAll);
+
 
 #endif

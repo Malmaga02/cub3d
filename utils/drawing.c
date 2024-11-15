@@ -97,3 +97,21 @@ void	draw_rectangle(t_all *pAll, t_point start, t_point end, int color)
 		rows++;
 	}
 }
+
+void	draw_line(t_all *pAll, int col)
+{
+	int	i;
+	t_point	start;
+	t_point	end;
+
+	i = 0;
+	start = (t_point){.x = col, .y = 0};
+	end = (t_point){.x = col, .y = pAll->algo.draw_start - 1};
+	draw_rectangle(pAll, start, end, BLUE);
+	start.y = pAll->algo.draw_start;
+	end.y = pAll->algo.draw_end;
+	draw_rectangle(pAll, start, end, WHITE); //texture da gestire per i muri
+	start.y = pAll->algo.draw_end + 1;
+	end.y = SCREEN_H - 1;
+	draw_rectangle(pAll, start, end, pAll->colors.floor);
+}

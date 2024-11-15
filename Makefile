@@ -16,7 +16,9 @@ COLOUR_GREEN = \033[0;32m
 LIBFT_MAKE = ./libft.plus
 MLX_MAKE = ./mlx
 
-SRC = ./game/event.c \
+SRC = ./algo/calculations.c \
+	./algo/raycast.c \
+	./game/event.c \
 	./game/minimap.c \
 	./game/movement.c \
 	./game/start_game.c \
@@ -29,7 +31,9 @@ SRC = ./game/event.c \
 	./parsing/utils.c \
 	./print/print_error.c \
 	./utils/drawing.c \
-	./utils/free.c
+	./utils/free.c \
+	./utils/player_struct.c
+
 
 all: $(NAME)
 

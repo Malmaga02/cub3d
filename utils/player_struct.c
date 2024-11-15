@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-t_player	build_player_struct(t_map map)
-{
+// t_player	build_player_struct(t_map map)
+// {
 	
-}
+// }

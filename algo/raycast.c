@@ -12,87 +12,94 @@
 
 #include "cub3d.h"
 
-void	dda(t_all *pAll, t_algo algo, int map_x, int map_y)
+void	dda(t_all *pAll)
 {
-	while (!algo.collision)
+	while (!pAll->algo.collision)
 	{
-		if (algo.side_dist_x < algo.side_dist_y)
+		if (pAll->algo.side_dist_x < pAll->algo.side_dist_y)
 		{
-			algo.side_dist_x += algo.delta_dist_x;
-			map_x += algo.step_x;
-			algo.side_collision = false;
+			pAll->algo.side_dist_x += pAll->algo.delta_dist_x;
+			pAll->algo.map_x += pAll->algo.step_x;
+			pAll->algo.side_collision = false;
 		}
 		else
 		{
-			algo.side_dist_y += algo.delta_dist_y;
-			map_y += algo.step_y;
-			algo.side_collision = true;
+			pAll->algo.side_dist_y += pAll->algo.delta_dist_y;
+			pAll->algo.map_y += pAll->algo.step_y;
+			pAll->algo.side_collision = true;
 		}
-		if (pAll->map.map[map_x][map_y] == '1')
-			algo.collision = true;
+		if (get_map_char(pAll, pAll->algo.map_x, pAll->algo.map_y) != '0')
+			pAll->algo.collision = true;
 	}
 }
 
-//tutta la funzione della guida messa insieme
-	// TODO:
-	// controllare che le variabili della struct t_algo siano stati impostati bene
-	// fare il refactor di perform_raycasting() in piu funzioni, come dda()
-	// capire i singoli step :)
-
-void perform_raycasting(t_all *pAll)
+void	calculate_ray(t_all *pAll)
 {
-	int w = pAll->window.frame->width;
-	int h = pAll->window.frame->height;
-
-	for (int x = 0; x < w; x++)
+	if (pAll->algo.ray_dir_x < 0)
 	{
-		t_algo algo;
-		algo.collision = false;
+		pAll->algo.step_x = -1;
+		pAll->algo.side_dist_x = (pAll->player.pos.x - pAll->algo.map_x) * pAll->algo.delta_dist_x;
+	}
+	else
+	{
+		pAll->algo.step_x = 1;
+		pAll->algo.side_dist_x = (pAll->algo.map_x + 1.0 - pAll->player.pos.x) * pAll->algo.delta_dist_x;
+	}
+	if (pAll->algo.ray_dir_y < 0)
+	{
+		pAll->algo.step_y = -1;
+		pAll->algo.side_dist_y = (pAll->player.pos.y - pAll->algo.map_y) * pAll->algo.delta_dist_y;
+	}
+	else
+	{
+		pAll->algo.step_y = 1;
+		pAll->algo.side_dist_y = (pAll->algo.map_y + 1.0 - pAll->player.pos.y) * pAll->algo.delta_dist_y;
+	}
+}
 
-		double cameraX = 2 * x / (double)w - 1;
-		algo.ray_dir_x = pAll->player.dir.x + pAll->player.plane.x * cameraX;
-		algo.ray_dir_y = pAll->player.dir.y + pAll->player.plane.y * cameraX;
-
-		int map_x = (int)pAll->player.pos.x;
-		int map_y = (int)pAll->player.pos.y;
-
-		algo.delta_dist_x = fabs(1 / algo.ray_dir_x);
-		algo.delta_dist_y = fabs(1 / algo.ray_dir_y);
-
-		if (algo.ray_dir_x < 0)
-		{
-			algo.step_x = -1;
-			algo.side_dist_x = (pAll->player.pos.x - map_x) * algo.delta_dist_x;
-		}
+void	check_perp_distance(t_all *pAll)
+{
+		if (!pAll->algo.side_collision)
+			pAll->algo.perp_wall_dist = (pAll->algo.map_x - pAll->player.pos.x + (1 - pAll->algo.step_x) / 2) / pAll->algo.ray_dir_x;
 		else
-		{
-			algo.step_x = 1;
-			algo.side_dist_x = (map_x + 1.0 - pAll->player.pos.x) * algo.delta_dist_x;
-		}
+			pAll->algo.perp_wall_dist = (pAll->algo.map_y - pAll->player.pos.y + (1 - pAll->algo.step_y) / 2) / pAll->algo.ray_dir_y;
+}
 
-		if (algo.ray_dir_y < 0)
-		{
-			algo.step_y = -1;
-			algo.side_dist_y = (pAll->player.pos.y - map_y) * algo.delta_dist_y;
-		}
-		else
-		{
-			algo.step_y = 1;
-			algo.side_dist_y = (map_y + 1.0 - pAll->player.pos.y) * algo.delta_dist_y;
-		}
-		dda(pAll, algo, map_x, map_y);
-		if (!algo.side_collision)
-			algo.perp_wall_dist = (map_x - pAll->player.pos.x + (1 - algo.step_x) / 2) / algo.ray_dir_x;
-		else
-			algo.perp_wall_dist = (map_y - pAll->player.pos.y + (1 - algo.step_y) / 2) / algo.ray_dir_y;
+void	set_info_line(t_all *pAll, int col)
+{
+	pAll->algo.line_height = (int)(pAll->algo.height / pAll->algo.perp_wall_dist);
+	pAll->algo.draw_start = -(pAll->algo.line_height) / 2 + pAll->algo.height / 2;
+	if(pAll->algo.draw_start < 0)
+		pAll->algo.draw_start = 0;
+	pAll->algo.draw_end = pAll->algo.line_height / 2 + pAll->algo.height / 2;
+	if(pAll->algo.draw_end >= pAll->algo.height)
+		pAll->algo.draw_end = pAll->algo.height - 1;
+	if (col == SCREEN_W / 2) 
+		ft_printf("%d\n", pAll->algo.perp_wall_dist);
+	draw_line(pAll, col);
+}
 
-		int lineHeight = (int)(h / algo.perp_wall_dist);
+void	raycast(t_all *pAll)
+{
+	int	col;
 
-		int drawStart = -lineHeight / 2 + h / 2;
-		if (drawStart < 0) drawStart = 0;
-		int drawEnd = lineHeight / 2 + h / 2;
-		if (drawEnd >= h) drawEnd = h - 1;
-
-		draw_vertical_line(pAll, x, drawStart, drawEnd, color_based_on_side(algo.side_collision));
+	col = -1;
+	while (++col < SCREEN_W)
+	{
+		init_algo(pAll);
+		pAll->algo.collision = false;
+		pAll->algo.camera_x = 2 * col / (double)SCREEN_W - 1;
+		pAll->algo.ray_dir_x = pAll->player.dir.x + pAll->player.plane.x * pAll->algo.camera_x;
+		pAll->algo.ray_dir_y = pAll->player.dir.y + pAll->player.plane.y * pAll->algo.camera_x;
+		pAll->algo.delta_dist_x = fabs(1 / pAll->algo.ray_dir_x);
+		pAll->algo.delta_dist_y = fabs(1 / pAll->algo.ray_dir_y);
+		if (pAll->algo.ray_dir_x == 0)
+			pAll->algo.delta_dist_x = INT_MAX;
+		if (pAll->algo.ray_dir_y == 0)
+			pAll->algo.delta_dist_y = INT_MAX;
+		calculate_ray(pAll);
+		dda(pAll);
+		check_perp_distance(pAll);
+		set_info_line(pAll, col);
 	}
 }

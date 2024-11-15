@@ -50,6 +50,29 @@ t_map	get_map_info(char *map_file)
 	return (map);
 }
 
+void	init_algo(t_all *pAll)
+{
+	pAll->algo.ray_dir_x = 0;
+	pAll->algo.ray_dir_y = 0;
+	pAll->algo.side_dist_x = 0;
+	pAll->algo.side_dist_y = 0;
+	pAll->algo.delta_dist_x = 0;
+	pAll->algo.delta_dist_y = 0;
+	pAll->algo.perp_wall_dist = 0;
+	pAll->algo.camera_x = 0;
+	pAll->algo.step_x = 0;
+	pAll->algo.step_y = 0;
+	pAll->algo.map_x = pAll->player.pos.x;
+	pAll->algo.map_y = pAll->player.pos.y;
+	pAll->algo.collision = false;
+	pAll->algo.side_collision = false;
+	pAll->algo.width = SCREEN_W;
+	pAll->algo.height = SCREEN_H;
+	pAll->algo.line_height = 0;
+	pAll->algo.draw_end = 0;
+	pAll->algo.draw_start = 0;
+}
+
 bool	init_all(t_all *all_info, char *name_file)
 {
 	all_info->info_elements = get_elements(name_file);

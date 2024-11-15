@@ -27,7 +27,7 @@ int	rot_action(t_all *cubed, int old_dirx, int old_planex, int rot)
 	return (0);
 }
 
-int	rotate_player(t_all *cubed)
+/* int	rotate_player(t_all *cubed)
 {
 	double	old_dirx;
 	double	old_planex;
@@ -37,4 +37,4 @@ int	rotate_player(t_all *cubed)
 	if (cubed->event.rotate_left)
 		rot_action(cubed, old_dirx, old_planex, ROT);
 	return (0);
-}
+} */

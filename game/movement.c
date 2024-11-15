@@ -6,26 +6,26 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 19:32:08 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/11/15 19:45:11 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/15 20:14:40 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	update_player_position(t_all *cubed, double new_x, double new_y)
-{
-	cubed->player.pos.x = new_x;
-	cubed->player.pos.y = new_y;
-}
-
-bool	is_new_position_valid(t_all *cubed, double new_x, double new_y)
+bool	is_new_x_valid(t_all *cubed, double new_x)
 {
 	int	map_x;
-	int	map_y;
 
 	map_x = (int)new_x;
+	return (cubed->map.map[(int)cubed->player.pos.y][map_x] != '1');
+}
+
+bool	is_new_y_valid(t_all *cubed, double new_y)
+{
+    int map_y;
+
 	map_y = (int)new_y;
-	return (cubed->map.map[map_y][map_x] != '1');
+    return (cubed->map.map[map_y][(int)cubed->player.pos.x] != '1');
 }
 
 void	get_new_position(t_all *cubed, double *new_x, double *new_y)
@@ -69,8 +69,10 @@ int	move_player(t_all *cubed)
 	map_x = 0;
 	map_y = 0;
 	get_new_position(cubed, &new_x, &new_y);
-	if (is_new_position_valid(cubed, new_x, new_y))
-		update_player_position(cubed, new_x, new_y);
+	if (is_new_x_valid(cubed, new_x))
+		cubed->player.pos.x = new_x;
+	if (is_new_x_valid(cubed, new_y))
+		cubed->player.pos.y = new_y;
 	rotate_player(cubed);
 	return (0);
 }

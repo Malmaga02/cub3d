@@ -150,8 +150,8 @@ int			on_key_release(int key, t_all *ptr);
 	// Movement
 int			rotate_player(t_all *cubed);
 int			rot_action(t_all *cubed, int old_dirx, int old_planex, double rot);
-void		update_player_position(t_all *cubed, double new_x, double new_y);
-bool		is_new_position_valid(t_all *cubed, double new_x, double new_y);
+bool		is_new_x_valid(t_all *cubed, double new_x);
+bool		is_new_y_valid(t_all *cubed, double new_y);
 void		get_new_position(t_all *cubed, double *new_x, double *new_y);
 int			move_player(t_all *cubed);
 	// Minimap

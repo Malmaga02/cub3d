@@ -207,7 +207,7 @@ int			quit_game(t_all *pAll);
 	// Drawing
 t_img		*load_texture(void *mlx, char *file_path);
 void		render_weapon(t_all *pAll);
-void		draw_pixel(t_all *pAll, int x, int y, int color);
+bool		draw_pixel(t_all *pAll, int x, int y, int color);
 void		draw_rectangle(t_all *pAll, t_point start, t_point end, int color);
 void		draw_line(t_all *pAll, int col);
 	// Algo

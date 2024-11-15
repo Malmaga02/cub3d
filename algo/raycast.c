@@ -74,8 +74,7 @@ void	set_info_line(t_all *pAll, int col)
 	pAll->algo.draw_end = pAll->algo.line_height / 2 + pAll->algo.height / 2;
 	if(pAll->algo.draw_end >= pAll->algo.height)
 		pAll->algo.draw_end = pAll->algo.height - 1;
-	if (col == SCREEN_W / 2) 
-		ft_printf("%d\n", pAll->algo.perp_wall_dist);
+
 	draw_line(pAll, col);
 }
 
@@ -84,10 +83,13 @@ void	raycast(t_all *pAll)
 	int	col;
 
 	col = -1;
+	init_algo(pAll);
 	while (++col < SCREEN_W)
 	{
-		init_algo(pAll);
+		pAll->algo.map_x = pAll->player.pos.x;
+		pAll->algo.map_y = pAll->player.pos.y;
 		pAll->algo.collision = false;
+		
 		pAll->algo.camera_x = 2 * col / (double)SCREEN_W - 1;
 		pAll->algo.ray_dir_x = pAll->player.dir.x + pAll->player.plane.x * pAll->algo.camera_x;
 		pAll->algo.ray_dir_y = pAll->player.dir.y + pAll->player.plane.y * pAll->algo.camera_x;

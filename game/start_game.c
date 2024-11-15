@@ -12,8 +12,27 @@
 
 #include "cub3d.h"
 
+void move(t_all *pAll)
+{
+	t_point old_pos;
+	double dir;
+
+	old_pos = pAll->player.pos;
+	dir = 1.0;
+	if (pAll->event.walk_forw){
+		dir = -1;
+	}
+	if (pAll->event.walk_back || pAll->event.walk_forw){
+		old_pos.x -= dir * pAll->player.dir.x * 0.1;
+		old_pos.y -= dir * pAll->player.dir.y * 0.1;
+		pAll->player.pos = old_pos;
+	}
+
+}
+
 int	game_loop(t_all *pAll)
 {
+	move(pAll);
 	raycast(pAll);
 	// draw_rectangle(pAll, (t_point){0, 0}, (t_point){pAll->window.frame->width, pAll->window.frame->height}, BLACK);
 	// mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win,
@@ -22,6 +41,7 @@ int	game_loop(t_all *pAll)
 	mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win,
 		pAll->window.frame, 0, 0);
 	draw_minimap(pAll);
+
 	return (0);
 }
 

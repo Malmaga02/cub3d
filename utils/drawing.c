@@ -68,16 +68,19 @@ void	render_weapon(t_all *pAll)
 	// mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win, pAll->window.weapon, weapon_x, weapon_y);
 }
 
-void	draw_pixel(t_all *pAll, int x, int y, int color)
+bool	draw_pixel(t_all *pAll, int x, int y, int color)
 {
 	t_img	*image;
 
+	if (x < 0 || x >= pAll->window.frame->width || y < 0 || y >= pAll->window.frame->height)
+		return (false);
 	image = pAll->window.frame;
 	int idx = (y * image->size_line + x * (image->bpp / 8));
 	image->data[idx + 0] = (color) & 0xFF;
 	image->data[idx + 1] = (color >> 8) & 0xFF;
 	image->data[idx + 2] = (color >> 16) & 0xFF;
 	image->data[idx + 3] = (color >> 24);
+	return (true);
 }
 
 void	draw_rectangle(t_all *pAll, t_point start, t_point end, int color)
@@ -89,9 +92,10 @@ void	draw_rectangle(t_all *pAll, t_point start, t_point end, int color)
 	while (rows < end.y)
 	{
 		cols = start.x;
-		while (cols < end.x)
+		while (cols <= end.x)
 		{
-			draw_pixel(pAll, cols, rows, color);
+			if (!draw_pixel(pAll, cols, rows, color))
+				return ;
 			cols++;
 		}
 		rows++;

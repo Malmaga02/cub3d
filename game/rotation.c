@@ -6,13 +6,13 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 23:20:33 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/15 20:54:53 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/16 16:07:18 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	rot_action(t_all *cubed, int old_dirx, int old_planex, double rot)
+int	rot_action(t_all *cubed, double old_dirx, double old_planex, double rot)
 {
 	old_dirx = cubed->player.dir.x;
 	cubed->player.dir.x = cubed->player.dir.x * cos(rot)
@@ -29,14 +29,14 @@ int	rot_action(t_all *cubed, int old_dirx, int old_planex, double rot)
 
 int	rotate_player(t_all *cubed)
 {
-	double	old_dirx;
+	double	old_diry;
 	double	old_planex;
 
-	old_dirx = cubed->player.dir.x;
+	old_diry = cubed->player.dir.y;
 	old_planex = cubed->player.plane.x;
 	if (cubed->event.rotate_right == true)
-		rot_action(cubed, old_dirx, old_planex, ROT);
+		rot_action(cubed, old_diry, old_planex, -ROT);
 	if (cubed->event.rotate_left == true)
-		rot_action(cubed, old_dirx, old_planex, -ROT);
+		rot_action(cubed, old_diry, old_planex, ROT);
 	return (0);
 }

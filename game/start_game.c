@@ -6,29 +6,11 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:23:28 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/15 20:51:28 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/16 16:03:54 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void move(t_all *pAll)
-{
-	t_point old_pos;
-	double dir;
-
-	old_pos = pAll->player.pos;
-	dir = 1.0;
-	if (pAll->event.walk_forw){
-		dir = -1;
-	}
-	if (pAll->event.walk_back || pAll->event.walk_forw){
-		old_pos.x -= dir * pAll->player.dir.x * 0.1;
-		old_pos.y -= dir * pAll->player.dir.y * 0.1;
-		pAll->player.pos = old_pos;
-	}
-
-}
 
 int	game_loop(t_all *pAll)
 {

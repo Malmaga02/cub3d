@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:37:17 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/15 20:57:12 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/16 16:17:34 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ int			on_key_press(int key, t_all *ptr);
 int			on_key_release(int key, t_all *ptr);
 	// Movement
 int			rotate_player(t_all *cubed);
-int			rot_action(t_all *cubed, int old_dirx, int old_planex, double rot);
+int			rot_action(t_all *cubed, double old_dirx, double old_planex, double rot);
 bool		is_new_x_valid(t_all *cubed, double new_x);
 bool		is_new_y_valid(t_all *cubed, double new_y);
 void		get_new_position(t_all *cubed, double *new_x, double *new_y);

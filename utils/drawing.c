@@ -50,11 +50,9 @@ void	render_weapon(t_all *pAll)
 	int	color;
 
 	height = 0;
-	// height = pAll->window.frame->height - pAll->window.weapon->height;
 	while (height < pAll->window.weapon->height)
 	{
 		width = 0;
-		// width = (pAll->window.frame->width / 2) - (pAll->window.weapon->width / 2);
 		while (width < pAll->window.weapon->width)
 		{
 			offset = height * pAll->window.weapon->size_line + width * (pAll->window.weapon->bpp / 8);
@@ -65,7 +63,6 @@ void	render_weapon(t_all *pAll)
 		}
 		height++;
 	}
-	// mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win, pAll->window.weapon, weapon_x, weapon_y);
 }
 
 bool	draw_pixel(t_all *pAll, int x, int y, int color)

@@ -59,22 +59,22 @@ t_element	get_elements(char *name_file)
 	t_element	info_elements;
 
 	info_elements = (t_element){0};
-	info_elements.texture_nord = get_info_element(name_file, "NO");
+	info_elements.texture_nord = get_info_element(name_file, "NO ");
 	if (!info_elements.texture_nord)
 		return ((t_element){0});
-	info_elements.texture_sud = get_info_element(name_file, "SO");
+	info_elements.texture_sud = get_info_element(name_file, "SO ");
 	if (!info_elements.texture_sud)
 		return ((t_element){0});
-	info_elements.texture_est = get_info_element(name_file, "EA");
+	info_elements.texture_est = get_info_element(name_file, "EA ");
 	if (!info_elements.texture_est)
 		return ((t_element){0});
-	info_elements.texture_ovest = get_info_element(name_file, "WE");
+	info_elements.texture_ovest = get_info_element(name_file, "WE ");
 	if (!info_elements.texture_ovest)
 		return ((t_element){0});
-	info_elements.floor = get_info_element(name_file, "F");
+	info_elements.floor = get_info_element(name_file, "F ");
 	if (!info_elements.floor)
 		return ((t_element){0});
-	info_elements.ceiling = get_info_element(name_file, "C");
+	info_elements.ceiling = get_info_element(name_file, "C ");
 	if (!info_elements.ceiling)
 		return ((t_element){0});
 	return (info_elements);

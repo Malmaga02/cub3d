@@ -76,7 +76,7 @@ void	init_algo(t_all *pAll)
 bool	init_all(t_all *all_info, char *name_file)
 {
 	all_info->info_elements = get_elements(name_file);
-	if (!all_info->info_elements.texture_nord)
+	if (!all_info->info_elements.texture_north)
 		return (false);
 	all_info->map = get_map_info(name_file);
 	if (!all_info->map.map)

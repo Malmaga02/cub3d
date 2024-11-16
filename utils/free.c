@@ -14,14 +14,14 @@
 
 void	free_element(t_element *pElement)
 {
-	if (pElement->texture_nord)
-		free(pElement->texture_nord);
-	if (pElement->texture_sud)
-		free(pElement->texture_sud);
-	if (pElement->texture_est)
-		free(pElement->texture_est);
-	if (pElement->texture_ovest)
-		free(pElement->texture_ovest);
+	if (pElement->texture_north)
+		free(pElement->texture_north);
+	if (pElement->texture_south)
+		free(pElement->texture_south);
+	if (pElement->texture_east)
+		free(pElement->texture_east);
+	if (pElement->texture_west)
+		free(pElement->texture_west);
 	if (pElement->ceiling)
 		free(pElement->ceiling);
 	if (pElement->floor)

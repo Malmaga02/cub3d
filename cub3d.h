@@ -64,10 +64,10 @@ typedef enum	s_error
 
 typedef struct	s_element
 {
-	char	*texture_nord;
-	char	*texture_sud;
-	char	*texture_est;
-	char	*texture_ovest;
+	char	*north;
+	char	*south;
+	char	*east;
+	char	*west;
 	char	*ceiling;
 	char	*floor;
 }			t_element;
@@ -77,6 +77,15 @@ typedef struct	s_map
 	char	**map;
 	int		rows;
 }			t_map;
+
+typedef struct	s_draw
+{
+	t_img	*north;
+	t_img	*south;
+	t_img	*east;
+	t_img	*west;
+	t_pixel	*colors;
+}			t_draw;
 
 typedef struct s_event
 {
@@ -93,7 +102,7 @@ typedef struct s_point
 {
 	double		x;
 	double		y;
-}			t_point;
+}				t_point;
 
 typedef struct	s_player
 {
@@ -102,7 +111,7 @@ typedef struct	s_player
 	t_point		plane;
 	double		angle;
 	bool		collision;
-}			t_player;
+}				t_player;
 
 typedef struct	s_algo
 {
@@ -125,7 +134,7 @@ typedef struct	s_algo
 	int			draw_start;
 	int			draw_end;
 	int			line_height;
-}			t_algo;
+}				t_algo;
 
 typedef struct s_mlx
 {
@@ -133,7 +142,7 @@ typedef struct s_mlx
 	void		*mlx_win;
 	t_img		*frame;
 	t_img		*weapon;
-}			t_mlx;
+}				t_mlx;
 
 typedef struct	s_pixel
 {
@@ -147,12 +156,12 @@ typedef struct	s_all
 	double		time;
 	double		old_time;
 	t_element	info_elements;
+	t_map		map;
+	t_draw		texture;
 	t_event		event;
 	t_algo		algo;
-	t_map		map;
 	t_mlx		window;
 	t_player	player;
-	t_pixel		colors;
 }				t_all;
 
 // ----Parsing----

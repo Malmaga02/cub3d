@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:37:17 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/16 16:17:34 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/16 16:26:27 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define SCREEN_W 1080
 # define SCREEN_H 720
 # define ROT 0.050
-# define PLAYER_SPEED 0.15
+# define PLAYER_SPEED 0.09
 
 # define MINIMAP_TILE 6
 

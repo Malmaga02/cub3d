@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 19:32:08 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/11/16 16:19:21 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/16 16:25:39 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	move_player(t_all *cubed)
 	get_new_position(cubed, &new_x, &new_y);
 	if (is_new_x_valid(cubed, new_x))
 		cubed->player.pos.x = new_x;
-	if (is_new_x_valid(cubed, new_y))
+	if (is_new_y_valid(cubed, new_y))
 		cubed->player.pos.y = new_y;
 	rotate_player(cubed);
 	return (0);

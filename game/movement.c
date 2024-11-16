@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 19:32:08 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/11/16 16:25:39 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/16 17:23:58 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ void	get_new_position(t_all *cubed, double *new_x, double *new_y)
 	}
 	else if (cubed->event.walk_left)
 	{
-		*new_x = current_x + cubed->player.dir.y * PLAYER_SPEED;
-		*new_y = current_y - cubed->player.dir.x * PLAYER_SPEED;
+		*new_x = current_x - cubed->player.dir.y * PLAYER_SPEED;
+		*new_y = current_y + cubed->player.dir.x * PLAYER_SPEED;
 	}
 	else if (cubed->event.walk_right)
 	{
-		*new_x = current_x - cubed->player.dir.y * PLAYER_SPEED;
-		*new_y = current_y + cubed->player.dir.x * PLAYER_SPEED;
+		*new_x = current_x + cubed->player.dir.y * PLAYER_SPEED;
+		*new_y = current_y - cubed->player.dir.x * PLAYER_SPEED;
 	}
 }
 

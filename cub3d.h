@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:37:17 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/15 16:37:19 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/11/15 20:57:12 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@
 # define SCREEN_W 1080
 # define SCREEN_H 720
 # define ROT 0.050
-# define PLAYER_SPEED 0.001
+# define PLAYER_SPEED 0.15
 
-# define MINIMAP_TILE 25
+# define MINIMAP_TILE 6
 
 typedef enum	s_color
 {

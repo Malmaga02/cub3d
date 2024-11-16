@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 23:20:33 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/15 19:42:43 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/15 20:54:53 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	rotate_player(t_all *cubed)
 	old_dirx = cubed->player.dir.x;
 	old_planex = cubed->player.plane.x;
 	if (cubed->event.rotate_right == true)
-		rot_action(cubed, old_dirx, old_planex, -ROT);
-	if (cubed->event.rotate_left == true)
 		rot_action(cubed, old_dirx, old_planex, ROT);
+	if (cubed->event.rotate_left == true)
+		rot_action(cubed, old_dirx, old_planex, -ROT);
 	return (0);
 }

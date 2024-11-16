@@ -22,15 +22,9 @@ char	*get_path_texture(char	*texture, char *flag)
 	index = ft_strlen(flag);
 	while (texture && check_spaces(texture[index]))
 		index++;
-	info = ft_calloc(ft_strlen(texture) - index, sizeof(char));
+	info = ft_strdup(texture + index);
 	if (!info)
 		return (error(MALLOC_E), NULL);
-	while (texture && texture[index])
-	{
-		info[i] = texture[index];
-		i++;
-		index++;
-	}
 	return (free(texture), info);
 }
 

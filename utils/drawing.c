@@ -26,17 +26,20 @@ int	create_trgb(char *data, int offset)
 	return (b << 24 | g << 16 | r << 8 | t);
 }
 
-
 t_img	*load_texture(void *mlx, char *file_path)
 {
 	t_img	*texture;
 	int		width;
 	int		height;
 
-	texture = NULL;
 	texture = mlx_xpm_file_to_image(mlx, file_path, &width, &height);
 	if (!texture)
-		return (ft_printf("Error loading texture"), free(texture), NULL);
+	{
+		ft_printf("Error loading texture: %s\n", file_path);
+		return (NULL);
+	}
+	texture->width = width;
+	texture->height = height;
 	return (texture);
 }
 

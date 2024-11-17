@@ -14,6 +14,23 @@
 
 //aggiunto "../textures/"
 
+char	*get_color(char *texture, char *flag)
+{
+	char	*info;
+	int		index;
+	int		i;
+
+	i = 0;
+	info = NULL;
+	index = ft_strlen(flag);
+	while (texture && check_spaces(texture[index]))
+		index++;
+	info = ft_strdup(texture + index);
+	if (!info)
+		return (error(MALLOC_E), NULL);
+	return (free(texture), info);
+}
+
 char	*get_path_texture(char	*texture, char *flag)
 {
 	char	*info;
@@ -53,7 +70,9 @@ char	*get_info_element(char *name_file, char *flag)
 	close(fd);
 	if (!texture || (texture && !texture[0]))
 		return (free(texture), error(MISSING_EL), NULL);
-	return (get_path_texture(texture, flag));
+	if (!(flag == "F " || flag == "C "))
+		return (get_path_texture(texture, flag));
+	return (get_color(texture, flag));
 }
 
 t_element	get_elements(char *name_file)
@@ -63,21 +82,21 @@ t_element	get_elements(char *name_file)
 	info_elements = (t_element){0};
 	info_elements.texture_north = get_info_element(name_file, "NO ");
 	if (!info_elements.texture_north)
-		return ((t_element){0});
+		return (free_element(info_elements), (t_element){0});
 	info_elements.texture_south = get_info_element(name_file, "SO ");
 	if (!info_elements.texture_south)
-		return ((t_element){0});
+		return (free_element(info_elements), (t_element){0});
 	info_elements.texture_east = get_info_element(name_file, "EA ");
 	if (!info_elements.texture_east)
-		return ((t_element){0});
+		return (free_element(info_elements), (t_element){0});
 	info_elements.texture_west = get_info_element(name_file, "WE ");
 	if (!info_elements.texture_west)
-		return ((t_element){0});
+		return (free_element(info_elements), (t_element){0});
 	info_elements.floor = get_info_element(name_file, "F ");
 	if (!info_elements.floor)
-		return ((t_element){0});
+		return (free_element(info_elements), (t_element){0});
 	info_elements.ceiling = get_info_element(name_file, "C ");
 	if (!info_elements.ceiling)
-		return ((t_element){0});
+		return (free_element(info_elements), (t_element){0});
 	return (info_elements);
 }

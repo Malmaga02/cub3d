@@ -12,15 +12,39 @@
 
 #include "cub3d.h"
 
-t_player	get_player_info(t_map *map)
+bool	get_texture_and_colors(t_all *pAll) //aggiungere colori
+{
+	t_element	info_elements;
+
+	info_elements = get_elements(name_file);
+	if (!info_elements.texture_north)
+		return (false);
+	if (!load_wall_textures(info_elements, pAll))
+		return (free_element(info_elements), false);
+	if (!get_rgb_colors(info_elements, pAll))
+		return (free_element(info_elements), false);
+	return (free_element(info_elements), true);
+}
+
+bool	get_map_info(char *map_file, t_all *pAll)
+{
+	char	**map;
+
+	map = get_map(map_file);
+	if (!map || !is_map_playable(map))
+		return (error(ERROR_MAP), false);
+	pAll->map.map = map;
+	pAll->map.rows = count_rows(pAll->map.map);
+	return (true);
+}
+
+void	get_player_info(t_map *map, t_all *all_info)
 {
 	int			row;
 	int			col;
-	t_player	player;
 
 	row = 0;
 	col = 0;
-	player = (t_player){0};
 	while (map->map && map->map[row])
 	{
 		col = 0;
@@ -28,26 +52,13 @@ t_player	get_player_info(t_map *map)
 		{
 			if (is_player(map->map[row][col]))
 			{
-				player = set_info_player(col, row, map->map[row][col], player);
+				set_info_player(col, row, map->map[row][col], all_info);
 				map->map[row][col] = '0';
 			}
 			col++;
 		}
 		row++;
 	}
-	return (player);
-}
-
-t_map	get_map_info(char *map_file)
-{
-	t_map	map;
-
-	map = (t_map){0};
-	map.map = get_map(map_file);
-	if (!map.map || !is_map_playable(map.map))
-		return (error(ERROR_MAP), (t_map){0});
-	map.rows = count_rows(map.map);
-	return (map);
 }
 
 void	init_algo(t_all *pAll)
@@ -73,14 +84,12 @@ void	init_algo(t_all *pAll)
 	pAll->algo.draw_start = 0;
 }
 
-bool	init_all(t_all *all_info, char *name_file)
+bool	init_all(t_all *pAll, char *name_file)
 {
-	all_info->info_elements = get_elements(name_file);
-	if (!all_info->info_elements.texture_north)
+	if (!get_texture_and_colors(pAll))
 		return (false);
-	all_info->map = get_map_info(name_file);
-	if (!all_info->map.map)
+	if (!get_map_info(name_file, pAll))
 		return (false);
-	all_info->player = get_player_info(&all_info->map);
+	get_player_info(&pAll->map, pAll);
 	return (true);
 }

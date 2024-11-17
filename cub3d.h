@@ -29,6 +29,8 @@
 # include <stdbool.h>
 # include "libft.plus/includes/libft.h"
 
+# define BASE_HEX "0123456789abcdef"
+
 # define PI 3.14159265358979323846
 # define SCREEN_W 1080
 # define SCREEN_H 720
@@ -146,7 +148,6 @@ typedef struct s_mlx
 
 typedef struct	s_pixel
 {
-	t_color		wall;
 	t_color		ceiling;
 	t_color		floor;
 }				t_pixel;
@@ -155,9 +156,8 @@ typedef struct	s_all
 {
 	double		time;
 	double		old_time;
-	t_element	info_elements;
-	t_map		map;
 	t_draw		texture;
+	t_map		map;
 	t_event		event;
 	t_algo		algo;
 	t_mlx		window;
@@ -166,6 +166,7 @@ typedef struct	s_all
 
 // ----Parsing----
 	// Get_elements
+char		*get_color(char *texture, char *flag);
 char		*get_path_texture(char	*texture, char *flag);
 char		*get_info_element(char *name_file, char *flag);
 t_element	get_elements(char *name_file);
@@ -177,12 +178,20 @@ char		*get_map_rows(int fd, int flag);
 char		**get_map(char *name_file);
 	// Get_player
 t_player	set_pos_angle(int x, int y, int pov, t_player player);
-t_player	set_info_player(int x, int y, int pov, t_player player);
+void		set_info_player(int x, int y, int pov, t_all *pAll);
+	// Get_texture_and_colors
+t_color		get_actual_colors(char *color_sequence);
+int			*rgb_values(char *s);
+void		int_to_hex_str(char **sequence, int rgb_values, int index);
+char		*rgb_hex_representation(int *rgb_values);
+bool		get_rgb_colors(t_element info_element, t_all *pAll);
+bool		load_wall_textures(t_element info_element, t_all *pAll);
 	// Init_all
-t_player	get_player_info(t_map *map);
-t_map		get_map_info(char *map_file);
+bool		get_texture_and_colors(t_all *pAll);
+void		get_player_info(t_map *map, t_all *pAll);
+bool		get_map_info(char *map_file, t_all *pAll);
 void		init_algo(t_all *pAll);
-bool		init_all(t_all *all_info, char *name_file);
+bool		init_all(t_all *pAll, char *name_file);
 	// Playability
 bool		correct_char_set(char **map);
 bool		is_surrounded(char **map, int row, int col);

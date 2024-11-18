@@ -74,4 +74,24 @@ bool	load_wall_textures(t_element info_elements, t_all *pAll)
 		return (ft_putstr_fd("Error: Failed to load west wall texture\n", 2), false);
 	return (true);
 }
+
 // da norminettare e freeare in caso di fallimento load_wall_texture
+
+void	render_wall_texture(t_all *pAll, t_point start, t_point end, t_img *texture)
+{
+	int		hit_point_y;
+	int		col;
+	int		rows;
+	int		idx;
+
+	col = floor(texture->width * pAll->algo.hit_point.x - floor(pAll->algo.hit_point.x));
+	rows = 0;
+	while (rows + start.y < end.y)
+	{
+		hit_point_y = (texture->height * rows) / pAll->algo.line_height;
+		idx = (hit_point_y * texture->size_line + col * (texture->bpp / 8));
+		if (!draw_pixel(pAll, start.x, rows + start.y, create_trgb(texture->data, idx)))
+			return ;
+		rows++;
+	}
+}

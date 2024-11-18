@@ -43,10 +43,8 @@ t_img	*load_texture(void *mlx, char *file_path)
 	return (texture);
 }
 
-void	render_weapon(t_all *pAll)
+void	render_weapon(t_all *pAll, int weapon_x, int weapon_y)
 {
-	int weapon_x = (pAll->window.frame->width / 2) - (pAll->window.weapon->width / 2);
-	int weapon_y = pAll->window.frame->height - pAll->window.weapon->height;
 	int height;
 	int width;
 	int	offset;
@@ -111,10 +109,10 @@ void	draw_line(t_all *pAll, int col)
 	i = 0;
 	start = (t_point){.x = col, .y = 0};
 	end = (t_point){.x = col, .y = pAll->algo.draw_start - 1};
-	draw_rectangle(pAll, start, end, BLUE);
+	draw_rectangle(pAll, start, end, pAll->texture.ceiling);
 	start.y = pAll->algo.draw_start;
 	end.y = pAll->algo.draw_end;
-	draw_rectangle(pAll, start, end, WHITE); //texture da gestire per i muri
+	render_wall_texture(pAll, start, end, pAll->texture.north);
 	start.y = pAll->algo.draw_end + 1;
 	end.y = SCREEN_H - 1;
 	draw_rectangle(pAll, start, end, pAll->texture.floor);

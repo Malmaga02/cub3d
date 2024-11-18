@@ -18,8 +18,10 @@ int	game_loop(t_all *pAll)
 	raycast(pAll);
 	// draw_rectangle(pAll, (t_point){0, 0}, (t_point){pAll->window.frame->width, pAll->window.frame->height}, BLACK);
 	// mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win,
-	// 	pAll->window.frame, 0, 0);
-	render_weapon(pAll);
+	// 	pAll->window.frame, 0, 0)
+	render_weapon(pAll,
+		(pAll->window.frame->width / 2) - (pAll->window.weapon->width / 2),
+		pAll->window.frame->height - pAll->window.weapon->height);
 	mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win,
 		pAll->window.frame, 0, 0);
 	draw_minimap(pAll);
@@ -27,7 +29,7 @@ int	game_loop(t_all *pAll)
 	return (0);
 }
 
-int	start_game(t_all *pAll)
+int	start_game(t_all *pAll, char *name_file)
 {
 	pAll->window.mlx = mlx_init();
 	if (!pAll->window.mlx)
@@ -38,6 +40,8 @@ int	start_game(t_all *pAll)
 	pAll->window.frame = mlx_new_image(pAll->window.mlx, 1080, 720);
 	if (!pAll->window.frame)
 		return (ft_printf("Error during creation of MLX image"), quit_game(pAll));
+	if (!get_texture_and_colors(name_file, pAll))
+		return (ft_printf("Error during creation of textures"), quit_game(pAll));
 	pAll->window.weapon = load_texture(pAll->window.mlx, "./textures/player.xpm");
 	if (!pAll->window.weapon)
 		return (quit_game(pAll));

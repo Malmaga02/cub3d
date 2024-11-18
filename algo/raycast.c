@@ -59,10 +59,16 @@ void	calculate_ray(t_all *pAll)
 
 void	check_perp_distance(t_all *pAll)
 {
-		if (!pAll->algo.side_collision)
-			pAll->algo.perp_wall_dist = (pAll->algo.map_x - pAll->player.pos.x + (1 - pAll->algo.step_x) / 2) / pAll->algo.ray_dir_x;
-		else
-			pAll->algo.perp_wall_dist = (pAll->algo.map_y - pAll->player.pos.y + (1 - pAll->algo.step_y) / 2) / pAll->algo.ray_dir_y;
+	if (!pAll->algo.side_collision)
+		pAll->algo.perp_wall_dist = (pAll->algo.map_x - pAll->player.pos.x + (1 - pAll->algo.step_x) / 2) / pAll->algo.ray_dir_x;
+	else
+		pAll->algo.perp_wall_dist = (pAll->algo.map_y - pAll->player.pos.y + (1 - pAll->algo.step_y) / 2) / pAll->algo.ray_dir_y;
+}
+
+void	calculate_hit_point(t_all *pAll)
+{
+	pAll->algo.hit_point = (t_point){.x = pAll->player.pos.x + pAll->algo.perp_wall_dist * pAll->player.dir.x,
+	.y = pAll->player.pos.y - pAll->algo.perp_wall_dist * pAll->player.dir.y};
 }
 
 void	set_info_line(t_all *pAll, int col)
@@ -74,7 +80,6 @@ void	set_info_line(t_all *pAll, int col)
 	pAll->algo.draw_end = pAll->algo.line_height / 2 + pAll->algo.height / 2;
 	if(pAll->algo.draw_end >= pAll->algo.height)
 		pAll->algo.draw_end = pAll->algo.height - 1;
-
 	draw_line(pAll, col);
 }
 
@@ -102,6 +107,7 @@ void	raycast(t_all *pAll)
 		calculate_ray(pAll);
 		dda(pAll);
 		check_perp_distance(pAll);
+		calculate_hit_point(pAll);
 		set_info_line(pAll, col);
 	}
 }

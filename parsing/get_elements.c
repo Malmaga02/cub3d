@@ -35,6 +35,7 @@ char	*get_path_texture(char	*texture, char *flag)
 {
 	char	*info;
 	int		index;
+	int		len;
 	int		i;
 
 	i = 0;
@@ -42,13 +43,14 @@ char	*get_path_texture(char	*texture, char *flag)
 	index = ft_strlen(flag);
 	while (texture && check_spaces(texture[index]))
 		index++;
+	len = ft_strlen(texture) - 2 - index;
 	// if (!ft_strnstr(texture, "textures", (size_t)ft_strlen(texture)))
 	// {
 	// 	info = ft_strdup("../textures/");
 	// 	index+=2; //per escludere il possibile ./
 	// }
 	// info = strjoin_gnl(info, texture + index);
-	info = ft_strdup(texture + index);
+	info = ft_substr(texture, index, len);
 	if (!info)
 		return (error(MALLOC_E), NULL);
 	return (free(texture), info);

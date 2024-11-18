@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:23:28 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/16 16:03:54 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:15:38 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	game_loop(t_all *pAll)
 {
-	move_player(pAll);
 	raycast(pAll);
+	move_player(pAll);
 	// draw_rectangle(pAll, (t_point){0, 0}, (t_point){pAll->window.frame->width, pAll->window.frame->height}, BLACK);
 	// mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win,
 	// 	pAll->window.frame, 0, 0);

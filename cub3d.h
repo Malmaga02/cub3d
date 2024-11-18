@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:37:17 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/16 17:24:31 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:41:06 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,8 @@ int			rotate_player(t_all *cubed);
 int			rot_action(t_all *cubed, double old_dirx, double old_planex, double rot);
 bool		is_new_x_valid(t_all *cubed, double new_x);
 bool		is_new_y_valid(t_all *cubed, double new_y);
+void		calc_lateral_move(t_all *cubed, double *dx, double *dy);
+void		calc_forward_backward_move(t_all	*cubed, double *dx, double *dy);
 void		get_new_position(t_all *cubed, double *new_x, double *new_y);
 int			move_player(t_all *cubed);
 	// Minimap

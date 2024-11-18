@@ -26,9 +26,9 @@ SRC = ./algo/raycast.c \
 	./parsing/get_elements.c \
 	./parsing/get_map.c \
 	./parsing/get_player.c \
+	./parsing/get_texture_and_colors.c \
 	./parsing/init_all.c \
 	./parsing/playability.c \
-	./parsing/parse_textures.c \
 	./parsing/utils.c \
 	./print/print_error.c \
 	./utils/drawing.c \

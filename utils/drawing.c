@@ -117,5 +117,5 @@ void	draw_line(t_all *pAll, int col)
 	draw_rectangle(pAll, start, end, WHITE); //texture da gestire per i muri
 	start.y = pAll->algo.draw_end + 1;
 	end.y = SCREEN_H - 1;
-	draw_rectangle(pAll, start, end, pAll->colors.floor);
+	draw_rectangle(pAll, start, end, pAll->texture.floor);
 }

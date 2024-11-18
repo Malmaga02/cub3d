@@ -42,12 +42,13 @@ char	*get_path_texture(char	*texture, char *flag)
 	index = ft_strlen(flag);
 	while (texture && check_spaces(texture[index]))
 		index++;
-	if (!ft_strnstr(texture, "textures", (size_t)ft_strlen(texture)))
-	{
-		info = ft_strdup("../textures/");
-		index+=2; //per escludere il possibile ./
-	}
-	info = strjoin_gnl(info, texture + index);
+	// if (!ft_strnstr(texture, "textures", (size_t)ft_strlen(texture)))
+	// {
+	// 	info = ft_strdup("../textures/");
+	// 	index+=2; //per escludere il possibile ./
+	// }
+	// info = strjoin_gnl(info, texture + index);
+	info = ft_strdup(texture + index);
 	if (!info)
 		return (error(MALLOC_E), NULL);
 	return (free(texture), info);
@@ -70,9 +71,7 @@ char	*get_info_element(char *name_file, char *flag)
 	close(fd);
 	if (!texture || (texture && !texture[0]))
 		return (free(texture), error(MISSING_EL), NULL);
-	if (!(flag == "F " || flag == "C "))
-		return (get_path_texture(texture, flag));
-	return (get_color(texture, flag));
+	return (get_path_texture(texture, flag));
 }
 
 t_element	get_elements(char *name_file)
@@ -80,23 +79,23 @@ t_element	get_elements(char *name_file)
 	t_element	info_elements;
 
 	info_elements = (t_element){0};
-	info_elements.texture_north = get_info_element(name_file, "NO ");
-	if (!info_elements.texture_north)
-		return (free_element(info_elements), (t_element){0});
-	info_elements.texture_south = get_info_element(name_file, "SO ");
-	if (!info_elements.texture_south)
-		return (free_element(info_elements), (t_element){0});
-	info_elements.texture_east = get_info_element(name_file, "EA ");
-	if (!info_elements.texture_east)
-		return (free_element(info_elements), (t_element){0});
-	info_elements.texture_west = get_info_element(name_file, "WE ");
-	if (!info_elements.texture_west)
-		return (free_element(info_elements), (t_element){0});
+	info_elements.north = get_info_element(name_file, "NO ");
+	if (!info_elements.north)
+		return (free_element(&info_elements), (t_element){0});
+	info_elements.south = get_info_element(name_file, "SO ");
+	if (!info_elements.south)
+		return (free_element(&info_elements), (t_element){0});
+	info_elements.east = get_info_element(name_file, "EA ");
+	if (!info_elements.east)
+		return (free_element(&info_elements), (t_element){0});
+	info_elements.west = get_info_element(name_file, "WE ");
+	if (!info_elements.west)
+		return (free_element(&info_elements), (t_element){0});
 	info_elements.floor = get_info_element(name_file, "F ");
 	if (!info_elements.floor)
-		return (free_element(info_elements), (t_element){0});
+		return (free_element(&info_elements), (t_element){0});
 	info_elements.ceiling = get_info_element(name_file, "C ");
 	if (!info_elements.ceiling)
-		return (free_element(info_elements), (t_element){0});
+		return (free_element(&info_elements), (t_element){0});
 	return (info_elements);
 }

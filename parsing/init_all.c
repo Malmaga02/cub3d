@@ -12,18 +12,18 @@
 
 #include "cub3d.h"
 
-bool	get_texture_and_colors(t_all *pAll) //aggiungere colori
+bool	get_texture_and_colors(char *name_file, t_all *pAll) //aggiungere colori
 {
 	t_element	info_elements;
 
 	info_elements = get_elements(name_file);
-	if (!info_elements.texture_north)
+	if (!info_elements.north)
 		return (false);
-	if (!load_wall_textures(info_elements, pAll))
-		return (free_element(info_elements), false);
+	// if (!load_wall_textures(info_elements, pAll))
+	// 	return (free_element(&info_elements), false);
 	if (!get_rgb_colors(info_elements, pAll))
-		return (free_element(info_elements), false);
-	return (free_element(info_elements), true);
+		return (free_element(&info_elements), false);
+	return (free_element(&info_elements), true);
 }
 
 bool	get_map_info(char *map_file, t_all *pAll)
@@ -86,7 +86,7 @@ void	init_algo(t_all *pAll)
 
 bool	init_all(t_all *pAll, char *name_file)
 {
-	if (!get_texture_and_colors(pAll))
+	if (!get_texture_and_colors(name_file, pAll))
 		return (false);
 	if (!get_map_info(name_file, pAll))
 		return (false);

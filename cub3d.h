@@ -86,7 +86,8 @@ typedef struct	s_draw
 	t_img	*south;
 	t_img	*east;
 	t_img	*west;
-	t_pixel	*colors;
+	int		ceiling;
+	int		floor;
 }			t_draw;
 
 typedef struct s_event
@@ -146,12 +147,6 @@ typedef struct s_mlx
 	t_img		*weapon;
 }				t_mlx;
 
-typedef struct	s_pixel
-{
-	t_color		ceiling;
-	t_color		floor;
-}				t_pixel;
-
 typedef struct	s_all
 {
 	double		time;
@@ -180,14 +175,12 @@ char		**get_map(char *name_file);
 t_player	set_pos_angle(int x, int y, int pov, t_player player);
 void		set_info_player(int x, int y, int pov, t_all *pAll);
 	// Get_texture_and_colors
-t_color		get_actual_colors(char *color_sequence);
 int			*rgb_values(char *s);
-void		int_to_hex_str(char **sequence, int rgb_values, int index);
-char		*rgb_hex_representation(int *rgb_values);
+int			get_rgb(int *rgb_values);
 bool		get_rgb_colors(t_element info_element, t_all *pAll);
-bool		load_wall_textures(t_element info_element, t_all *pAll);
+bool		load_wall_textures(t_element info_elements, t_all *pAll);
 	// Init_all
-bool		get_texture_and_colors(t_all *pAll);
+bool		get_texture_and_colors(char *name_file, t_all *pAll);
 void		get_player_info(t_map *map, t_all *pAll);
 bool		get_map_info(char *map_file, t_all *pAll);
 void		init_algo(t_all *pAll);

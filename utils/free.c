@@ -14,14 +14,14 @@
 
 void	free_element(t_element *pElement)
 {
-	if (pElement->texture_north)
-		free(pElement->texture_north);
-	if (pElement->texture_south)
-		free(pElement->texture_south);
-	if (pElement->texture_east)
-		free(pElement->texture_east);
-	if (pElement->texture_west)
-		free(pElement->texture_west);
+	if (pElement->north)
+		free(pElement->north);
+	if (pElement->south)
+		free(pElement->south);
+	if (pElement->east)
+		free(pElement->east);
+	if (pElement->west)
+		free(pElement->west);
 	if (pElement->ceiling)
 		free(pElement->ceiling);
 	if (pElement->floor)
@@ -37,7 +37,6 @@ void	free_map(t_map *pMap)
 
 int	quit_game(t_all *pAll)
 {
-	free_element(&pAll->info_elements);
 	free_map(&pAll->map);
 	if (pAll->window.mlx_win)
 		mlx_destroy_window(pAll->window.mlx, pAll->window.mlx_win);

@@ -233,5 +233,4 @@ void		check_perp_distance(t_all *pAll);
 void		set_info_line(t_all *pAll, int col);
 void		raycast(t_all *pAll);
 
-
 #endif

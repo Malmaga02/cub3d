@@ -55,7 +55,6 @@ bool	get_rgb_colors(t_element info_element, t_all *pAll)
 		return (free(rgb_ceiling), false);
 	pAll->texture.ceiling = get_rgb(rgb_ceiling);
 	pAll->texture.floor = get_rgb(rgb_floor);
-	printf("%x, %x\n", pAll->texture.ceiling, pAll->texture.floor);
 	return (free(rgb_ceiling), free(rgb_floor), true);
 }
 

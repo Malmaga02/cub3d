@@ -6,16 +6,36 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:23:28 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/16 16:03:54 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:39:55 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int	move_player(t_all *cubed)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = 0.0;
+	new_y = 0.0;
+	get_new_position(cubed, &new_x, &new_y);
+	if (new_x == 0.0)
+		new_x = cubed->player.pos.x;
+	if (new_y == 0.0)
+		new_y = cubed->player.pos.y;
+	if (is_new_x_valid(cubed, new_x))
+		cubed->player.pos.x = new_x;
+	if (is_new_y_valid(cubed, new_y))
+		cubed->player.pos.y = new_y;
+	rotate_player(cubed);
+	return (0);
+}
+
 int	game_loop(t_all *pAll)
 {
-	move_player(pAll);
 	raycast(pAll);
+	move_player(pAll);
 	// draw_rectangle(pAll, (t_point){0, 0}, (t_point){pAll->window.frame->width, pAll->window.frame->height}, BLACK);
 	// mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win,
 	// 	pAll->window.frame, 0, 0)

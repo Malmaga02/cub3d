@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 19:32:08 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/11/16 17:23:58 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:29:32 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,69 +14,61 @@
 
 bool	is_new_x_valid(t_all *cubed, double new_x)
 {
-	int	map_x;
 	int	current_map_y;
 
 	current_map_y = (int)cubed->player.pos.y;
-	map_x = (int)new_x;
-	return (get_map_char(cubed, map_x, current_map_y) != '1');
+	return (get_map_char(cubed, (int)new_x, current_map_y) != '1');
 }
 
 bool	is_new_y_valid(t_all *cubed, double new_y)
 {
-    int map_y;
-	int current_map_x;
+	int	current_map_x;
 
 	current_map_x = (int)cubed->player.pos.x;
-	map_y = (int)new_y;
-    return (get_map_char(cubed, current_map_x, map_y) != '1');
+	return (get_map_char(cubed, current_map_x, (int)new_y) != '1');
+}
+
+void	calc_forward_backward_move(t_all *cubed, double *dx, double *dy)
+{
+	if (cubed->event.walk_forw)
+	{
+		*dx += cubed->player.dir.x * PLAYER_SPEED;
+		*dy += cubed->player.dir.y * PLAYER_SPEED;
+	}
+	if (cubed->event.walk_back)
+	{
+		*dx -= cubed->player.dir.x * PLAYER_SPEED;
+		*dy -= cubed->player.dir.y * PLAYER_SPEED;
+	}
+}
+
+void	calc_lateral_move(t_all *cubed, double *dx, double *dy)
+{
+	if (cubed->event.walk_left)
+	{
+		*dx -= cubed->player.dir.y * PLAYER_SPEED;
+		*dy += cubed->player.dir.x * PLAYER_SPEED;
+	}
+	if (cubed->event.walk_right)
+	{
+		*dx += cubed->player.dir.y * PLAYER_SPEED;
+		*dy -= cubed->player.dir.x * PLAYER_SPEED;
+	}
 }
 
 void	get_new_position(t_all *cubed, double *new_x, double *new_y)
 {
 	double	current_x;
 	double	current_y;
+	double	dx;
+	double	dy;
 
+	dx = 0.0;
+	dy = 0.0;
 	current_x = cubed->player.pos.x;
 	current_y = cubed->player.pos.y;
-	if (cubed->event.walk_forw)
-	{
-		*new_x = current_x + cubed->player.dir.x * PLAYER_SPEED;
-		*new_y = current_y + cubed->player.dir.y * PLAYER_SPEED;
-	}
-	else if (cubed->event.walk_back)
-	{
-		*new_x = current_x - cubed->player.dir.x * PLAYER_SPEED;
-		*new_y = current_y - cubed->player.dir.y * PLAYER_SPEED;
-	}
-	else if (cubed->event.walk_left)
-	{
-		*new_x = current_x - cubed->player.dir.y * PLAYER_SPEED;
-		*new_y = current_y + cubed->player.dir.x * PLAYER_SPEED;
-	}
-	else if (cubed->event.walk_right)
-	{
-		*new_x = current_x + cubed->player.dir.y * PLAYER_SPEED;
-		*new_y = current_y - cubed->player.dir.x * PLAYER_SPEED;
-	}
-}
-
-int	move_player(t_all *cubed)
-{
-	double	new_x;
-	double	new_y;
-	int		map_x;
-	int		map_y;
-
-	new_x = 0.0;
-	new_y = 0.0;
-	map_x = 0;
-	map_y = 0;
-	get_new_position(cubed, &new_x, &new_y);
-	if (is_new_x_valid(cubed, new_x))
-		cubed->player.pos.x = new_x;
-	if (is_new_y_valid(cubed, new_y))
-		cubed->player.pos.y = new_y;
-	rotate_player(cubed);
-	return (0);
+	calc_forward_backward_move(cubed, &dx, &dy);
+	calc_lateral_move(cubed, &dx, &dy);
+	*new_x = current_x + dx;
+	*new_y = current_y + dy;
 }

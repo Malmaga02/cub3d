@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chsassi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:16:01 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/15 13:16:03 by chsassi          ###   ########.fr       */
+/*   Updated: 2024/11/19 22:12:46 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,37 @@
 // }
 
 
-int	create_trgb(char *data, int offset)
+size_t	create_trgb(char *data, int offset)
 {
-	int t;
-	int r;
-	int g;
-	int b;
+	// unsigned int res;
+	// int			r;
+	// int			g;
+	// int 		b;
+		
+	//t = *(unsigned int *)(data + offset);
+	// r = data[offset];
+	// g = data[offset + 1];
+	// b = data[offset + 2];
+	// t = data[offset + 3];
+	// res = r;
+	// res = res | (g << 8);
+	// res = res | (b << 16);
+	// res = res | (t << 24);
+	// return (t);
+	unsigned char	t;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 
-	if (!data)
-		return (-1);
-	if (data && !data[offset])
-		t = 0;
-	else
-		t = data[offset];
-	r = data[offset + 1];
-	g = data[offset + 2];
-	b = data[offset + 3];
-	return (b << 24 | g << 16 | r << 8 | t);
+	// if (!data)
+	// 	return (-1);
+	// if (data && !data[offset])
+	// 	t = 0;
+	r = data[offset];
+	g = data[offset + 1];
+	b = data[offset + 2];
+	t = data[offset + 3];
+	return ((t << 24) | (b << 16) | (g << 8) | (r));
 }
 
 t_img	*load_texture(void *mlx, char *file_path)
@@ -84,8 +98,6 @@ void	render_weapon(t_all *pAll, int weapon_x, int weapon_y)
 		{
 			offset = height * pAll->window.weapon->size_line + width * (pAll->window.weapon->bpp / 8);
 			color = create_trgb(pAll->window.weapon->data, offset);
-			if (color == -1)
-				return ;
 			if (pAll->window.weapon->data[offset + 3] != -1)
 				draw_pixel(pAll, width + weapon_x, height + weapon_y, color);
 			width++;
@@ -140,7 +152,20 @@ void	draw_line(t_all *pAll, int col)
 	draw_rectangle(pAll, start, end, pAll->texture.ceiling);
 	start.y = pAll->algo.draw_start;
 	end.y = pAll->algo.draw_end;
-	render_wall_texture(pAll, start, end, pAll->texture.north);
+	if (pAll->algo.side_collision == 0)
+	{
+		if (pAll->algo.ray_dir_x >= 0)
+			render_wall_texture(pAll, start, end, pAll->texture.west);
+		else
+			render_wall_texture(pAll, start, end, pAll->texture.east);
+	}
+	else
+	{
+		if (pAll->algo.ray_dir_y >= 0)
+			render_wall_texture(pAll, start, end, pAll->texture.south);
+		else
+			render_wall_texture(pAll, start, end, pAll->texture.north);
+	}
 	start.y = pAll->algo.draw_end + 1;
 	end.y = SCREEN_H - 1;
 	draw_rectangle(pAll, start, end, pAll->texture.floor);

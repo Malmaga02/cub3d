@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 17:03:53 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/19 18:45:36 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:13:39 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	check_perp_distance(t_all *pAll)
 
 void	calculate_hit_point(t_all *pAll)
 {
-	pAll->algo.hit_point = (t_point){.x = pAll->player.pos.x + (pAll->algo.perp_wall_dist * pAll->player.dir.x),
-	.y = pAll->player.pos.y - pAll->algo.perp_wall_dist * pAll->player.dir.y};
+	pAll->algo.hit_point = (t_point){.x = pAll->player.pos.x + (pAll->algo.perp_wall_dist * pAll->algo.ray_dir_x),
+	.y = pAll->player.pos.y + pAll->algo.perp_wall_dist * pAll->algo.ray_dir_y};
 }
 
 void	set_info_line(t_all *pAll, int col)
@@ -106,8 +106,6 @@ void	raycast(t_all *pAll)
 		calculate_ray(pAll);
 		dda(pAll);
 		check_perp_distance(pAll);
-		if (col == SCREEN_W / 2)
-			printf("%f, %f\n", pAll->player.dir.x, pAll->player.dir.y);
 		calculate_hit_point(pAll);
 		set_info_line(pAll, col);
 	}

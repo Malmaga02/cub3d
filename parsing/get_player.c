@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_player.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgalmari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:09:09 by mgalmari          #+#    #+#             */
-/*   Updated: 2024/11/13 16:09:18 by mgalmari         ###   ########.fr       */
+/*   Updated: 2024/11/19 19:55:22 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	set_info_player(int x, int y, int pov, t_all *all_info)
 	}
 	else if (pov == 'E')
 	{
-		all_info->player.plane.y = 0.66;
+		all_info->player.plane.y = -0.66;
 		all_info->player.dir.x = 1;
 	}
 	else if (pov == 'S')
@@ -47,7 +47,7 @@ void	set_info_player(int x, int y, int pov, t_all *all_info)
 	}
 	else if (pov == 'W')
 	{
-		all_info->player.plane.y = -0.66;
+		all_info->player.plane.y = 0.66;
 		all_info->player.dir.x = -1;
 	}
 }

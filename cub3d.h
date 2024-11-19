@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:37:17 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/18 16:41:06 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/19 22:13:38 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,7 +239,7 @@ void		set_info_line(t_all *pAll, int col);
 void		raycast(t_all *pAll);
 
 
-int	create_trgb(char *data, int offset);
-void	render_wall_texture(t_all *pAll, t_point start, t_point end, t_img *texture);
+size_t		create_trgb(char *data, int offset);
+void		render_wall_texture(t_all *pAll, t_point start, t_point end, t_img *texture);
 
 #endif

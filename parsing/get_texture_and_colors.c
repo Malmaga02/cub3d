@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:11:26 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/19 18:35:56 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:42:04 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,19 @@ void render_wall_texture(t_all *pAll, t_point start, t_point end, t_img *texture
 	int idx;
 
 	if (pAll->algo.side_collision == 0)
-		tex_x = (int)(pAll->algo.hit_point.y * texture->width) % texture->width;
+	{
+		if (pAll->algo.ray_dir_x >= 0)
+			tex_x = (int)(pAll->algo.hit_point.y * texture->width) % texture->width;
+		else
+			tex_x = (int)((1 - pAll->algo.hit_point.y) * texture->width) % texture->width;
+	}
 	else
-		tex_x = (int)(pAll->algo.hit_point.x * texture->width) % texture->width;
+	{
+		if (pAll->algo.ray_dir_y >= 0)
+			tex_x = (int)(pAll->algo.hit_point.x * texture->width) % texture->width;
+		else
+			tex_x = (int)((1 - pAll->algo.hit_point.x) * texture->width) % texture->width;
+	}
 	step = (double)texture->height / pAll->algo.line_height;
 	tex_pos = (start.y - SCREEN_H / 2 + pAll->algo.line_height / 2) * step;
 	rows = start.y;

@@ -1,7 +1,7 @@
-NO ./textures/NO_wall.xpm
+NO ./textures/NO_WALL.xpm
 SO ./textures/SO_wall.xpm
-WE ./textures/WE_wall.xpm
-EA ./textures/EA_wall.xpm
+WE ./textures/WE_WALL.xpm
+EA ./textures/EA_WALL.xpm
 
 C 0, 255, 0
 F 0,0,0

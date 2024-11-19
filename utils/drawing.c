@@ -12,6 +12,12 @@
 
 #include "cub3d.h"
 
+// int	create_trgb(int t, int r, int g, int b)
+// {
+// 	return (t << 24 | r << 16 | g << 8 | b);
+// }
+
+
 int	create_trgb(char *data, int offset)
 {
 	int t;
@@ -19,7 +25,12 @@ int	create_trgb(char *data, int offset)
 	int g;
 	int b;
 
-	t = data[offset];
+	if (!data)
+		return (-1);
+	if (data && !data[offset])
+		t = 0;
+	else
+		t = data[offset];
 	r = data[offset + 1];
 	g = data[offset + 2];
 	b = data[offset + 3];
@@ -58,6 +69,8 @@ void	render_weapon(t_all *pAll, int weapon_x, int weapon_y)
 		{
 			offset = height * pAll->window.weapon->size_line + width * (pAll->window.weapon->bpp / 8);
 			color = create_trgb(pAll->window.weapon->data, offset);
+			if (color == -1)
+				return ;
 			if (pAll->window.weapon->data[offset + 3] != -1)
 				draw_pixel(pAll, width + weapon_x, height + weapon_y, color);
 			width++;

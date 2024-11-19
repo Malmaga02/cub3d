@@ -83,14 +83,21 @@ void	render_wall_texture(t_all *pAll, t_point start, t_point end, t_img *texture
 	int		col;
 	int		rows;
 	int		idx;
+	int		color;
 
-	col = floor(texture->width * pAll->algo.hit_point.x - floor(pAll->algo.hit_point.x));
+	col = texture->width * (pAll->algo.hit_point.x - floor(pAll->algo.hit_point.x));
+	
 	rows = 0;
 	while (rows + start.y < end.y)
 	{
 		hit_point_y = (texture->height * rows) / pAll->algo.line_height;
-		idx = (hit_point_y * texture->size_line + col * (texture->bpp / 8));
-		if (!draw_pixel(pAll, start.x, rows + start.y, create_trgb(texture->data, idx)))
+		
+		idx = hit_point_y * texture->width + col * (texture->bpp / 8);
+		
+		color = create_trgb(texture->data, idx);
+		if (color == -1)
+			return ;
+		if (!draw_pixel(pAll, start.x, rows + start.y, color))
 			return ;
 		rows++;
 	}

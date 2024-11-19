@@ -14,64 +14,87 @@
 
 //aggiunto "../textures/"
 
-char	*get_color(char *texture, char *flag)
+int	find_start(char *texture, char *flag)
 {
-	char	*info;
-	int		index;
-	int		i;
+	int	index;
 
-	i = 0;
-	info = NULL;
 	index = ft_strlen(flag);
 	while (texture && check_spaces(texture[index]))
 		index++;
-	info = ft_strdup(texture + index);
-	if (!info)
-		return (error(MALLOC_E), NULL);
-	return (free(texture), info);
+	return (index);
 }
 
-char	*get_path_texture(char	*texture, char *flag)
+// char	*get_color(char *texture, char *flag)
+// {
+// 	char	*info;
+// 	int		index;
+// 	int		i;
+
+// 	i = 0;
+// 	info = NULL;
+// 	index = ft_strlen(flag);
+// 	while (texture && check_spaces(texture[index]))
+// 		index++;
+// 	info = ft_strdup(texture + index);
+// 	if (!info)
+// 		return (error(MALLOC_E), NULL);
+// 	return (free(texture), info);
+// }
+
+char	*get_path_texture(char	**texture, char *flag)
 {
 	char	*info;
+	int		row;
 	int		index;
-	int		i;
+	int		len;
 
-	i = 0;
+	row = 0;
+	len = 0;
+	index = 0;
 	info = NULL;
-	index = ft_strlen(flag);
-	while (texture && check_spaces(texture[index]))
-		index++;
-	// if (!ft_strnstr(texture, "textures", (size_t)ft_strlen(texture)))
-	// {
-	// 	info = ft_strdup("../textures/");
-	// 	index+=2; //per escludere il possibile ./
-	// }
-	// info = strjoin_gnl(info, texture + index);
-	info = ft_strdup(texture + index);
-	if (!info)
-		return (error(MALLOC_E), NULL);
-	return (free(texture), info);
+	while (texture && texture[row])
+	{
+		len = ft_strlen(texture[row]) - 1;
+		if (!ft_strncmp(texture[row], flag, ft_strlen(flag)))
+		{
+			index = find_start(texture[index], flag);
+			len -= index;
+			info = ft_substr(texture[row], index, len);
+			if (!info)
+				return (error(MALLOC_E), NULL);
+			return (info);
+		}
+		row++;
+	}
+	return (NULL);
 }
 
 char	*get_info_element(char *name_file, char *flag)
 {
-	char	*texture;
+	t_list	*texture;
+	t_list	*node;
+	char	*content;
 	int		fd;
 
+	texture = NULL;
+	node = NULL;
 	fd = open(name_file, O_RDONLY);
 	if (fd == -1)
 		return (close(fd), error(OPEN_E), NULL);
-	texture = gnl(fd);
-	while (texture && ft_strncmp(texture, flag, ft_strlen(flag)))
+	content = gnl(fd);
+	while (content && !is_external_row(content))
 	{
-		free(texture);
-		texture = gnl(fd);
+		node = ft_lstnew((void *)ft_strdup(content));
+		if (!node)
+			return (ft_lstclear(&texture, free), close(fd), free(content), NULL);
+		ft_lstadd_back(&texture, node);
+		free(content);
+		content = gnl(fd);
 	}
 	close(fd);
-	if (!texture || (texture && !texture[0]))
+	if (!texture)
 		return (free(texture), error(MISSING_EL), NULL);
-	return (get_path_texture(texture, flag));
+	return (get_path_texture(lst_to_mtx(texture), flag));
 }
 
 t_element	get_elements(char *name_file)

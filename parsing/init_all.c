@@ -19,8 +19,8 @@ bool	get_texture_and_colors(char *name_file, t_all *pAll) //aggiungere colori
 	info_elements = get_elements(name_file);
 	if (!info_elements.north)
 		return (false);
-	// if (!load_wall_textures(info_elements, pAll))
-	// 	return (free_element(&info_elements), false);
+	if (!load_wall_textures(info_elements, pAll))
+		return (free_element(&info_elements), false);
 	if (!get_rgb_colors(info_elements, pAll))
 		return (free_element(&info_elements), false);
 	return (free_element(&info_elements), true);
@@ -86,8 +86,6 @@ void	init_algo(t_all *pAll)
 
 bool	init_all(t_all *pAll, char *name_file)
 {
-	if (!get_texture_and_colors(name_file, pAll))
-		return (false);
 	if (!get_map_info(name_file, pAll))
 		return (false);
 	get_player_info(&pAll->map, pAll);

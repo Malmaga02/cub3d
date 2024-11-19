@@ -88,6 +88,7 @@ typedef struct	s_draw
 	t_img	*west;
 	int		ceiling;
 	int		floor;
+	int		size_texture;
 }			t_draw;
 
 typedef struct s_event
@@ -137,6 +138,7 @@ typedef struct	s_algo
 	int			draw_start;
 	int			draw_end;
 	int			line_height;
+	t_point		hit_point;
 }				t_algo;
 
 typedef struct s_mlx
@@ -162,7 +164,7 @@ typedef struct	s_all
 // ----Parsing----
 	// Get_elements
 char		*get_color(char *texture, char *flag);
-char		*get_path_texture(char	*texture, char *flag);
+char		*get_path_texture(char	**texture, char *flag);
 char		*get_info_element(char *name_file, char *flag);
 t_element	get_elements(char *name_file);
 	// Get_map
@@ -201,7 +203,7 @@ bool		is_player(int c);
 void		error(int flag);
 // ----Game----
 int			game_loop(t_all *pAll);
-int			start_game(t_all *pAll);
+int			start_game(t_all *pAll, char *name_file);
 	// Events
 int			on_key_press(int key, t_all *ptr);
 int			on_key_release(int key, t_all *ptr);
@@ -224,7 +226,7 @@ void		free_map(t_map *pMap);
 int			quit_game(t_all *pAll);
 	// Drawing
 t_img		*load_texture(void *mlx, char *file_path);
-void		render_weapon(t_all *pAll);
+void		render_weapon(t_all *pAll, int weapon_x, int weapon_y);
 bool		draw_pixel(t_all *pAll, int x, int y, int color);
 void		draw_rectangle(t_all *pAll, t_point start, t_point end, int color);
 void		draw_line(t_all *pAll, int col);
@@ -234,5 +236,9 @@ void		calculate_ray(t_all *pAll);
 void		check_perp_distance(t_all *pAll);
 void		set_info_line(t_all *pAll, int col);
 void		raycast(t_all *pAll);
+
+
+int	create_trgb(char *data, int offset);
+void	render_wall_texture(t_all *pAll, t_point start, t_point end, t_img *texture);
 
 #endif

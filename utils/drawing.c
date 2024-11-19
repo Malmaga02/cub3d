@@ -12,6 +12,12 @@
 
 #include "cub3d.h"
 
+// int	create_trgb(int t, int r, int g, int b)
+// {
+// 	return (t << 24 | r << 16 | g << 8 | b);
+// }
+
+
 int	create_trgb(char *data, int offset)
 {
 	int t;
@@ -19,7 +25,12 @@ int	create_trgb(char *data, int offset)
 	int g;
 	int b;
 
-	t = data[offset];
+	if (!data)
+		return (-1);
+	if (data && !data[offset])
+		t = 0;
+	else
+		t = data[offset];
 	r = data[offset + 1];
 	g = data[offset + 2];
 	b = data[offset + 3];
@@ -43,10 +54,8 @@ t_img	*load_texture(void *mlx, char *file_path)
 	return (texture);
 }
 
-void	render_weapon(t_all *pAll)
+void	render_weapon(t_all *pAll, int weapon_x, int weapon_y)
 {
-	int weapon_x = (pAll->window.frame->width / 2) - (pAll->window.weapon->width / 2);
-	int weapon_y = pAll->window.frame->height - pAll->window.weapon->height;
 	int height;
 	int width;
 	int	offset;
@@ -60,6 +69,8 @@ void	render_weapon(t_all *pAll)
 		{
 			offset = height * pAll->window.weapon->size_line + width * (pAll->window.weapon->bpp / 8);
 			color = create_trgb(pAll->window.weapon->data, offset);
+			if (color == -1)
+				return ;
 			if (pAll->window.weapon->data[offset + 3] != -1)
 				draw_pixel(pAll, width + weapon_x, height + weapon_y, color);
 			width++;
@@ -111,10 +122,10 @@ void	draw_line(t_all *pAll, int col)
 	i = 0;
 	start = (t_point){.x = col, .y = 0};
 	end = (t_point){.x = col, .y = pAll->algo.draw_start - 1};
-	draw_rectangle(pAll, start, end, BLUE);
+	draw_rectangle(pAll, start, end, pAll->texture.ceiling);
 	start.y = pAll->algo.draw_start;
 	end.y = pAll->algo.draw_end;
-	draw_rectangle(pAll, start, end, WHITE); //texture da gestire per i muri
+	render_wall_texture(pAll, start, end, pAll->texture.north);
 	start.y = pAll->algo.draw_end + 1;
 	end.y = SCREEN_H - 1;
 	draw_rectangle(pAll, start, end, pAll->texture.floor);

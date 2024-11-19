@@ -73,7 +73,7 @@ void	calculate_hit_point(t_all *pAll)
 
 void	set_info_line(t_all *pAll, int col)
 {
-	pAll->algo.line_height = (int)(pAll->algo.height / pAll->algo.perp_wall_dist);
+	pAll->algo.line_height = pAll->algo.height / pAll->algo.perp_wall_dist;
 	pAll->algo.draw_start = -(pAll->algo.line_height) / 2 + pAll->algo.height / 2;
 	if(pAll->algo.draw_start < 0)
 		pAll->algo.draw_start = 0;
@@ -94,7 +94,6 @@ void	raycast(t_all *pAll)
 		pAll->algo.map_x = pAll->player.pos.x;
 		pAll->algo.map_y = pAll->player.pos.y;
 		pAll->algo.collision = false;
-		
 		pAll->algo.camera_x = 2 * col / (double)SCREEN_W - 1;
 		pAll->algo.ray_dir_x = pAll->player.dir.x + pAll->player.plane.x * pAll->algo.camera_x;
 		pAll->algo.ray_dir_y = pAll->player.dir.y + pAll->player.plane.y * pAll->algo.camera_x;

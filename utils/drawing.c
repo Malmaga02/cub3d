@@ -12,8 +12,22 @@
 
 #include "cub3d.h"
 
-// int	create_trgb(int t, int r, int g, int b)
+// int	create_trgb_text(char *data, int offset)
 // {
+// 	int t;
+// 	int r;
+// 	int g;
+// 	int b;
+
+// 	if (!data)
+// 		return (-1);
+// 	if (data && !data[offset])
+// 		t = 0;
+// 	else
+// 		t = data[offset];
+// 	r = data[offset + 1];
+// 	g = data[offset + 2];
+// 	b = data[offset + 3];
 // 	return (t << 24 | r << 16 | g << 8 | b);
 // }
 
@@ -49,6 +63,7 @@ t_img	*load_texture(void *mlx, char *file_path)
 		ft_printf("Error loading texture: %s\n", file_path);
 		return (NULL);
 	}
+	printf("%s %d\n", file_path, width);
 	texture->width = width;
 	texture->height = height;
 	return (texture);

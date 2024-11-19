@@ -225,6 +225,7 @@ void		free_element(t_element *pElement);
 void		free_map(t_map *pMap);
 int			quit_game(t_all *pAll);
 	// Drawing
+//int			create_trgb_text(char *data, int offset);
 t_img		*load_texture(void *mlx, char *file_path);
 void		render_weapon(t_all *pAll, int weapon_x, int weapon_y);
 bool		draw_pixel(t_all *pAll, int x, int y, int color);

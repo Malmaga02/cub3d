@@ -36,16 +36,12 @@ int	game_loop(t_all *pAll)
 {
 	raycast(pAll);
 	move_player(pAll);
-	// draw_rectangle(pAll, (t_point){0, 0}, (t_point){pAll->window.frame->width, pAll->window.frame->height}, BLACK);
-	// mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win,
-	// 	pAll->window.frame, 0, 0)
 	render_weapon(pAll,
 		(pAll->window.frame->width / 2) - (pAll->window.weapon->width / 2),
 		pAll->window.frame->height - pAll->window.weapon->height);
 	mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win,
 		pAll->window.frame, 0, 0);
 	draw_minimap(pAll);
-
 	return (0);
 }
 

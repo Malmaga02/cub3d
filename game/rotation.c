@@ -15,6 +15,7 @@
 int	rot_action(t_all *cubed, double old_dirx, double old_planex, double rot)
 {
 	old_dirx = cubed->player.dir.x;
+	printf("%f\n", rot);
 	cubed->player.dir.x = cubed->player.dir.x * cos(rot)
 		- cubed->player.dir.y * sin(rot);
 	cubed->player.dir.y = old_dirx * sin(rot)

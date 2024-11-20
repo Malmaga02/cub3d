@@ -41,7 +41,7 @@ SRC = ./src/algo/calculate.c \
 all: $(NAME)
 
 $(NAME): $(SRC)
-	[ -d "$(MLX_DIR)" ] || $(DOWNLOAD_MLX)
+	@[ -d "$(MLX_DIR)" ] || echo "Downloading MLX..." && $(DOWNLOAD_MLX)
 	@make all -s -C $(LIBFT_MAKE)
 	@make -C $(MLX_DIR)
 	$(CC) $(CFLAGS) $(SRC) -L$(LIBFT_MAKE) -lft $(MLX_INCLUDE) -o $(NAME)
@@ -53,6 +53,7 @@ clean:
 fclean: clean
 	@make fclean -s -C $(LIBFT_MAKE)
 	@$(RM) $(NAME)
+	@$(RM) -rf $(MLX_DIR)
 
 re: fclean all
 

@@ -36,6 +36,7 @@
 # define SCREEN_H 720
 # define ROT 0.050
 # define MINIMAP_TILE 6
+# define MINIMAP_STROKE 2
 
 typedef enum s_color
 {

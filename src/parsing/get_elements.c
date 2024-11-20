@@ -88,7 +88,7 @@ char	**get_mtx_elements(char *name_file)
 	}
 	complete_gnl(fd);
 	if (!texture)
-		return (free(content), ft_lstclear(&texture, free), error(MISSING_EL), NULL);
+		return (free(content), error(MISSING_EL), NULL);
 	return (free(content), lst_to_mtx(texture));
 }
 

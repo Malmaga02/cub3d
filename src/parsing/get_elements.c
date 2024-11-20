@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static void	complete_gnl(int fd)
+void	complete_gnl(int fd)
 {
 	char	*content;
 

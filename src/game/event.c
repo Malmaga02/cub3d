@@ -34,7 +34,7 @@ int	on_key_press(int key, t_all *pAll)
 	if (key == XK_l)
 		pAll->event.show_legend = true;
 	if (key == XK_Shift_L)
-		pAll->player.velox = 0.16;
+		pAll->player.velox_mult = 2;
 	return (0);
 }
 
@@ -57,6 +57,6 @@ int	on_key_release(int key, t_all *pAll)
 	if (key == XK_l)
 		pAll->event.show_legend = !pAll->event.show_legend;
 	if (key == XK_Shift_L)
-		pAll->player.velox = 0.08;
+		pAll->player.velox_mult = 1;
 	return (0);
 }

@@ -117,6 +117,7 @@ typedef struct s_player
 	t_point		plane;
 	double		angle;
 	double		velox;
+	double		velox_mult;
 	bool		collision;
 }				t_player;
 

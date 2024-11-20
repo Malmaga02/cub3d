@@ -32,13 +32,17 @@ void	calc_forward_backward_move(t_all *cubed, double *dx, double *dy)
 {
 	if (cubed->event.walk_forw)
 	{
-		*dx += cubed->player.dir.x * cubed->player.velox;
-		*dy += cubed->player.dir.y * cubed->player.velox;
+		*dx += cubed->player.dir.x * cubed->player.velox
+			* cubed->player.velox_mult;
+		*dy += cubed->player.dir.y * cubed->player.velox
+			* cubed->player.velox_mult;
 	}
 	if (cubed->event.walk_back)
 	{
-		*dx -= cubed->player.dir.x * cubed->player.velox;
-		*dy -= cubed->player.dir.y * cubed->player.velox;
+		*dx -= cubed->player.dir.x
+			* (cubed->player.velox * cubed->player.velox_mult);
+		*dy -= cubed->player.dir.y
+			* (cubed->player.velox * cubed->player.velox_mult);
 	}
 }
 
@@ -46,13 +50,17 @@ void	calc_lateral_move(t_all *cubed, double *dx, double *dy)
 {
 	if (cubed->event.walk_left)
 	{
-		*dx -= cubed->player.dir.y * cubed->player.velox;
-		*dy += cubed->player.dir.x * cubed->player.velox;
+		*dx -= cubed->player.dir.y * cubed->player.velox
+			* cubed->player.velox_mult;
+		*dy += cubed->player.dir.x * cubed->player.velox
+			* cubed->player.velox_mult;
 	}
 	if (cubed->event.walk_right)
 	{
-		*dx += cubed->player.dir.y * cubed->player.velox;
-		*dy -= cubed->player.dir.x * cubed->player.velox;
+		*dx += cubed->player.dir.y * cubed->player.velox
+			* cubed->player.velox_mult;
+		*dy -= cubed->player.dir.x * cubed->player.velox
+			* cubed->player.velox_mult;
 	}
 }
 

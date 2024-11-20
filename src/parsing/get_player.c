@@ -31,6 +31,7 @@ void	set_info_player(int x, int y, int pov, t_all *all_info)
 {
 	all_info->player = set_pos_angle(x, y, pov, all_info->player);
 	all_info->player.velox = 0.09;
+	all_info->player.velox_mult = 1;
 	if (pov == 'N')
 	{
 		all_info->player.plane.x = 0.66;

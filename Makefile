@@ -14,7 +14,8 @@ COLOUR_BLUE = \033[0;34m
 COLOUR_GREEN = \033[0;32m
 
 LIBFT_MAKE = ./libft.plus
-MLX_MAKE = ./mlx
+MLX_DIR = ./mlx
+DOWNLOAD_MLX = git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR)
 
 SRC = ./src/algo/calculate.c \
 	./src/algo/raycast_helpers.c \
@@ -39,8 +40,10 @@ SRC = ./src/algo/calculate.c \
 
 all: $(NAME)
 
-$(NAME): $(SRC) 
+$(NAME): $(SRC)
+	[ -d "$(MLX_DIR)" ] || $(DOWNLOAD_MLX)
 	@make all -s -C $(LIBFT_MAKE)
+	@make -C $(MLX_DIR)
 	$(CC) $(CFLAGS) $(SRC) -L$(LIBFT_MAKE) -lft $(MLX_INCLUDE) -o $(NAME)
 	@echo "$(COLOUR_BLUE) $(BOLD_TEXT) Run ./cub3d to start the game. $(RESET)";
 
@@ -52,6 +55,12 @@ fclean: clean
 	@$(RM) $(NAME)
 
 re: fclean all
+
+VALGRIND = valgrind --quiet --leak-check=full --show-leak-kinds=all --track-origins=yes --track-origins=yes
+
+valgrind: all
+	clear
+	$(VALGRIND) ./$(NAME) maps/map.cub
 
 # .SILENT:
 .PHONY: all clean fclean re

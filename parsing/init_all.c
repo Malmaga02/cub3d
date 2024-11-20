@@ -18,7 +18,7 @@ bool	get_texture_and_colors(char *name_file, t_all *pAll) //aggiungere colori
 
 	info_elements = get_elements(name_file);
 	if (!info_elements.north)
-		return (false);
+		return (free_element(&info_elements), false);
 	if (!load_wall_textures(info_elements, pAll))
 		return (free_element(&info_elements), false);
 	if (!get_rgb_colors(info_elements, pAll))

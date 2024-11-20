@@ -61,8 +61,8 @@ char	*get_path_texture(char	**texture, char *flag)
 			len -= index;
 			info = ft_substr(texture[row], index, len);
 			if (!info)
-				return (error(MALLOC_E), NULL);
-			return (info);
+				return (free_mtx(texture), error(MALLOC_E), NULL);
+			return (free_mtx(texture), info);
 		}
 		row++;
 	}
@@ -92,8 +92,9 @@ char	*get_info_element(char *name_file, char *flag)
 		content = gnl(fd);
 	}
 	close(fd);
+	free(content);
 	if (!texture)
-		return (free(texture), error(MISSING_EL), NULL);
+		return (ft_lstclear(&texture, free), error(MISSING_EL), NULL);
 	return (get_path_texture(lst_to_mtx(texture), flag));
 }
 

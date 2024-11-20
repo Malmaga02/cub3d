@@ -167,9 +167,11 @@ typedef struct s_all
 // ----Parsing----
 
 	// Get_elements
+void		complete_gnl(int fd);
+int			find_start(char *texture, char *flag);
 char		*get_path_texture(char	**texture, char *flag);
-char		*get_info_element(char *name_file, char *flag);
-t_element	get_elements(char *name_file);
+char		**get_mtx_elements(char *name_file);
+t_element	get_elements(char *name_file, t_element info_elements);
 
 	// Get_map
 bool		empty_line(char *str);

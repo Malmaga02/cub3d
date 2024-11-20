@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:11:26 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/19 21:42:04 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:09:43 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,9 @@ void render_wall_texture(t_all *pAll, t_point start, t_point end, t_img *texture
 	{
 		tex_y = (int)tex_pos % texture->height;
 		tex_pos += step;
-		idx = (tex_y * texture->size_line) + (tex_x * (texture->bpp / 8));
+		idx = (abs(tex_y) * texture->size_line) + (abs(tex_x) * (texture->bpp / 8));
+		// if (idx < 0)
+		// 	idx *= -1;
 		color = create_trgb(texture->data, idx);
 		if (color != -1)
 			draw_pixel(pAll, start.x, rows, color);

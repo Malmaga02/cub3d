@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 23:20:33 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/16 16:07:18 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:02:11 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	rot_action(t_all *cubed, double old_dirx, double old_planex, double rot)
 {
 	old_dirx = cubed->player.dir.x;
-	printf("%f\n", rot);
 	cubed->player.dir.x = cubed->player.dir.x * cos(rot)
 		- cubed->player.dir.y * sin(rot);
 	cubed->player.dir.y = old_dirx * sin(rot)

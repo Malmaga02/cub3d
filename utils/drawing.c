@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:16:01 by chsassi           #+#    #+#             */
-/*   Updated: 2024/11/19 22:12:46 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:58:32 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ size_t	create_trgb(char *data, int offset)
 	// int			r;
 	// int			g;
 	// int 		b;
+	// unsigned int t;
 		
-	//t = *(unsigned int *)(data + offset);
+	// t = *(unsigned int *)(data + offset);
+	// return (t);
 	// r = data[offset];
 	// g = data[offset + 1];
 	// b = data[offset + 2];
@@ -54,11 +56,12 @@ size_t	create_trgb(char *data, int offset)
 	unsigned char	g;
 	unsigned char	b;
 
-	// if (!data)
-	// 	return (-1);
-	// if (data && !data[offset])
-	// 	t = 0;
-	r = data[offset];
+	if (!data)
+		return (-1);
+	if (data && !data[offset])
+		r = 0;
+	else
+		r = data[offset];
 	g = data[offset + 1];
 	b = data[offset + 2];
 	t = data[offset + 3];

@@ -76,11 +76,6 @@ char	*gnl(int fd)
 	{
 		tmp = strjoin_gnl(&waste[fd], NULL);
 		bytes = !ft_find_nl(&res, &waste[fd], tmp, 1);
-		// if (!bytes)
-		// {
-		// 	free(waste[fd]);
-		// 	return (NULL);
-		// }
 		free(tmp);
 	}
 	read_until_nl(fd, &res, &waste[fd], bytes);

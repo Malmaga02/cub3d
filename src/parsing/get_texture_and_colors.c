@@ -12,10 +12,6 @@
 
 #include "cub3d.h"
 
-// rappresentazione colori per R, G, B con range 0-255 per ogni coloree!!
-// da stringa a matrice con numeri decimali, conversione in esadecimali, cmp con colori esistenti 
-// NECESSARIO GESTIRE ERRORI E FREE !!!!!!
-
 int	*rgb_values(char *s)
 {
 	char	**color_mtx;
@@ -62,79 +58,38 @@ bool	load_wall_textures(t_element info_elements, t_all *pAll)
 {
 	pAll->texture.north = load_texture(pAll->window.mlx, info_elements.north);
 	if (!pAll->texture.north)
-		return (ft_putstr_fd("Error: Failed to load north wall texture\n", 2), false); //c'è da freeare
+		return (ft_putstr_fd("Failed to load north wall texture\n", 2), false);
 	pAll->texture.south = load_texture(pAll->window.mlx, info_elements.south);
 	if (!pAll->texture.south)
-		return (ft_putstr_fd("Error: Failed to load south wall texture\n", 2), false);
+		return (ft_putstr_fd("Failed to load south wall texture\n", 2), false);
 	pAll->texture.east = load_texture(pAll->window.mlx, info_elements.east);
 	if (!pAll->texture.east)
-		return (ft_putstr_fd("Error: Failed to load east wall texture\n", 2), false);
+		return (ft_putstr_fd("Failed to load east wall texture\n", 2), false);
 	pAll->texture.west = load_texture(pAll->window.mlx, info_elements.west);
 	if (!pAll->texture.west)
-		return (ft_putstr_fd("Error: Failed to load west wall texture\n", 2), false);
+		return (ft_putstr_fd("Failed to load west wall texture\n", 2), false);
 	return (true);
 }
 
-// da norminettare e freeare in caso di fallimento load_wall_texture
-
-// void	render_wall_texture(t_all *pAll, t_point start, t_point end, t_img *texture)
-// {
-// 	int		hit_point_y;
-// 	int		col;
-// 	int		rows;
-// 	int		idx;
-// 	int		color;
-
-// 	col = texture->width * (pAll->algo.hit_point.x - floor(pAll->algo.hit_point.x));
-// 	rows = 0;
-// 	while (rows + start.y < end.y)
-// 	{
-// 		hit_point_y = (texture->height * rows) / pAll->algo.line_height;
-// 		idx = hit_point_y * texture->width + col * (texture->bpp / 8);
-// 		color = create_trgb(texture->data, idx);
-// 		if (color == -1)
-// 			return ;
-// 		if (!draw_pixel(pAll, start.x, rows + start.y, color))
-// 			return ;
-// 		rows++;
-// 	}
-// }
-
-
-void render_wall_texture(t_all *pAll, t_point start, t_point end, t_img *texture)
+void	render_wall_texture(t_all *pAll, t_point start,
+	t_point end, t_img *texture)
 {
-	int rows;
-	int tex_x;
-	int tex_y;
-	double tex_pos;
-	double step;
-	int color;
-	int idx;
+	int		rows;
+	double	step;
+	int		color;
+	int		idx;
 
-	if (pAll->algo.side_collision == 0)
-	{
-		if (pAll->algo.ray_dir_x >= 0)
-			tex_x = (int)(pAll->algo.hit_point.y * texture->width) % texture->width;
-		else
-			tex_x = (int)((1 - pAll->algo.hit_point.y) * texture->width) % texture->width;
-	}
-	else
-	{
-		if (pAll->algo.ray_dir_y >= 0)
-			tex_x = (int)(pAll->algo.hit_point.x * texture->width) % texture->width;
-		else
-			tex_x = (int)((1 - pAll->algo.hit_point.x) * texture->width) % texture->width;
-	}
+	determine_x_coord(pAll, texture);
 	step = (double)texture->height / pAll->algo.line_height;
-	tex_pos = (start.y - SCREEN_H / 2 + pAll->algo.line_height / 2) * step;
+	pAll->texture.tex_pos = (start.y - SCREEN_H / 2
+			+ pAll->algo.line_height / 2) * step;
 	rows = start.y;
 	while (rows < end.y)
 	{
-		tex_y = (int)tex_pos % texture->height;
-		tex_pos += step;
-		idx = (abs(tex_y) * texture->size_line) + (abs(tex_x) * (texture->bpp / 8));
-		// if (idx < 0)
-		// 	idx *= -1;
+		pAll->texture.tex_y = (int)pAll->texture.tex_pos % texture->height;
+		pAll->texture.tex_pos += step;
+		idx = (abs(pAll->texture.tex_y) * texture->size_line)
+			+ (abs(pAll->texture.tex_x) * (texture->bpp / 8));
 		color = create_trgb(texture->data, idx);
 		if (color != -1)
 			draw_pixel(pAll, start.x, rows, color);

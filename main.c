@@ -22,8 +22,6 @@ int	main(int ac, char **av)
 		return (error(ARG_ERROR), 0);
 	if (!init_all(&all_info, av[1]))
 		return (1);
-	// printf("%f, %f", all_info.player.pos.x, all_info.player.pos.y);
-	// exit(0);
 	start_game(&all_info, av[1]);
 	return (0);
 }

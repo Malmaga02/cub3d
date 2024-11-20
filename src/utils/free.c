@@ -47,4 +47,3 @@ int	quit_game(t_all *pAll)
 	}
 	return (exit(0), 0);
 }
-

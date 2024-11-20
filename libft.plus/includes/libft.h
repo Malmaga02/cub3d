@@ -63,7 +63,8 @@ int					ft_putnbr_fd(int n, int fd);
 /* FT_PRINTF */
 void				ft_printf_putstr(char *s, int *fin);
 void				ft_printf_format(char c, va_list arg, int *fin);
-void				ft_printf_putmemory(unsigned long long ptr, int *fin, int ox);
+void				ft_printf_putmemory(unsigned long long ptr,
+						int *fin, int ox);
 void				ft_printf_putnbr_b(unsigned int nbr, int *fin);
 void				ft_printf_putnbr(int n, int *fin);
 void				ft_printf_putchar(int c, int *fin);

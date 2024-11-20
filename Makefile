@@ -16,25 +16,26 @@ COLOUR_GREEN = \033[0;32m
 LIBFT_MAKE = ./libft.plus
 MLX_MAKE = ./mlx
 
-SRC = ./algo/raycast.c \
-	./game/event.c \
-	./game/minimap.c \
-	./game/movement.c \
-	./game/rotation.c \
-	./game/start_game.c \
+SRC = ./src/algo/calculate.c \
+	./src/algo/raycast_helpers.c \
+	./src/algo/raycast.c \
+	./src/game/event.c \
+	./src/game/minimap.c \
+	./src/game/movement.c \
+	./src/game/rotation.c \
+	./src/game/start_game.c \
 	./main.c \
-	./parsing/get_elements.c \
-	./parsing/get_map.c \
-	./parsing/get_player.c \
-	./parsing/get_texture_and_colors.c \
-	./parsing/init_all.c \
-	./parsing/playability.c \
-	./parsing/utils.c \
-	./print/print_error.c \
-	./utils/drawing.c \
-	./utils/free.c \
-	./utils/player_struct.c
-
+	./src/parsing/get_elements.c \
+	./src/parsing/get_map.c \
+	./src/parsing/get_player.c \
+	./src/parsing/get_texture_and_colors.c \
+	./src/parsing/init_all.c \
+	./src/parsing/playability.c \
+	./src/parsing/utils.c \
+	./src/print/print_error.c \
+	./src/utils/draw_helpers.c \
+	./src/utils/drawing.c \
+	./src/utils/free.c \
 
 all: $(NAME)
 

@@ -15,7 +15,7 @@
 void	error(int flag)
 {
 	if (flag == ARG_ERROR)
-		ft_putstr_fd("The game can handle exactly one \"file.cub\" as an argument.\n", 2);
+		ft_putstr_fd("The game can handle one file.cub as an argument.\n", 2);
 	else if (flag == MALLOC_E)
 		ft_putstr_fd("Error on malloc.\n", 2);
 	else if (flag == OPEN_E)

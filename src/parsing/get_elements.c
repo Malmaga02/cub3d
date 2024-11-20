@@ -24,23 +24,6 @@ int	find_start(char *texture, char *flag)
 	return (index);
 }
 
-// char	*get_color(char *texture, char *flag)
-// {
-// 	char	*info;
-// 	int		index;
-// 	int		i;
-
-// 	i = 0;
-// 	info = NULL;
-// 	index = ft_strlen(flag);
-// 	while (texture && check_spaces(texture[index]))
-// 		index++;
-// 	info = ft_strdup(texture + index);
-// 	if (!info)
-// 		return (error(MALLOC_E), NULL);
-// 	return (free(texture), info);
-// }
-
 char	*get_path_texture(char	**texture, char *flag)
 {
 	char	*info;
@@ -86,7 +69,8 @@ char	*get_info_element(char *name_file, char *flag)
 	{
 		node = ft_lstnew((void *)ft_strdup(content));
 		if (!node)
-			return (ft_lstclear(&texture, free), close(fd), free(content), NULL);
+			return (ft_lstclear(&texture, free),
+				close(fd), free(content), NULL);
 		ft_lstadd_back(&texture, node);
 		free(content);
 		content = gnl(fd);

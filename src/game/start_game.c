@@ -49,16 +49,16 @@ int	start_game(t_all *pAll, char *name_file)
 {
 	pAll->window.mlx = mlx_init();
 	if (!pAll->window.mlx)
-		return (ft_printf("Error during creation of MLX instance"), quit_game(pAll));
-	pAll->window.mlx_win = mlx_new_window(pAll->window.mlx, 1080, 720, "cub3d");
+		return (ft_printf("Error creating MLX instance"), quit_game(pAll));
+	pAll->window.mlx_win = mlx_new_window(pAll->window.mlx, 1080, 720, "cub3D");
 	if (!pAll->window.mlx_win)
-		return (ft_printf("Error during creation of MLX window"), quit_game(pAll));
+		return (ft_printf("Error creating MLX window"), quit_game(pAll));
 	pAll->window.frame = mlx_new_image(pAll->window.mlx, 1080, 720);
 	if (!pAll->window.frame)
-		return (ft_printf("Error during creation of MLX image"), quit_game(pAll));
+		return (ft_printf("Error creating MLX image"), quit_game(pAll));
 	if (!get_texture_and_colors(name_file, pAll))
-		return (ft_printf("Error during creation of textures"), quit_game(pAll));
-	pAll->window.weapon = load_texture(pAll->window.mlx, "./textures/player.xpm");
+		return (ft_printf("Error during textures rendering"), quit_game(pAll));
+	pAll->window.weapon = load_texture(pAll->window.mlx, PLAYER_TEXTURE);
 	if (!pAll->window.weapon)
 		return (quit_game(pAll));
 	mlx_hook(pAll->window.mlx_win, KeyPress, KeyPressMask, on_key_press, pAll);

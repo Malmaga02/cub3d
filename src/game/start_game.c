@@ -42,6 +42,11 @@ int	game_loop(t_all *pAll)
 	mlx_put_image_to_window(pAll->window.mlx, pAll->window.mlx_win,
 		pAll->window.frame, 0, 0);
 	draw_minimap(pAll);
+	if (pAll->event.show_legend == false)
+		mlx_string_put(pAll->window.mlx, pAll->window.mlx_win, 930, 15,
+			WHITE, "PRESS L TO SHOW KEYBINDS");
+	else
+		draw_legend(pAll);
 	return (0);
 }
 

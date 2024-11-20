@@ -31,6 +31,10 @@ int	on_key_press(int key, t_all *pAll)
 		pAll->event.rotate_left = true;
 	if (key == XK_Right)
 		pAll->event.rotate_right = true;
+	if (key == XK_l)
+		pAll->event.show_legend = true;
+	if (key == XK_Shift_L)
+		pAll->player.velox = 0.16;
 	return (0);
 }
 
@@ -50,5 +54,9 @@ int	on_key_release(int key, t_all *pAll)
 		pAll->event.rotate_right = false;
 	if (key == XK_m)
 		pAll->event.show_minimap = !pAll->event.show_minimap;
+	if (key == XK_l)
+		pAll->event.show_legend = !pAll->event.show_legend;
+	if (key == XK_Shift_L)
+		pAll->player.velox = 0.08;
 	return (0);
 }

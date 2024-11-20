@@ -31,7 +31,7 @@ void	render_minimap_pixel(t_all *pAll, int x, int y, char element)
 	{.x = x * MINIMAP_TILE + MINIMAP_TILE,
 		.y = y * MINIMAP_TILE + MINIMAP_TILE};
 	if (element == '1')
-		draw_rectangle(pAll, start, end, BLUE);
+		draw_rectangle(pAll, start, end, GREY);
 	if (element == '0')
 		draw_rectangle(pAll, start, end, WHITE);
 	if (element == 'N'
@@ -53,8 +53,9 @@ void	draw_minimap(t_all *pAll)
 	{
 		cols = -1;
 		while (pAll->map.map[rows][++cols])
-			render_minimap_pixel(pAll, cols, rows,
+			render_minimap_pixel(pAll, cols + 2, rows + 2,
 				get_map_char(pAll, cols, rows));
 	}
-	render_minimap_pixel(pAll, pAll->player.pos.x, pAll->player.pos.y, 'N');
+	render_minimap_pixel(pAll, pAll->player.pos.x + 2,
+		pAll->player.pos.y + 2, 'N');
 }

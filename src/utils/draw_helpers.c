@@ -92,3 +92,26 @@ void	render_weapon(t_all *pAll, int weapon_x, int weapon_y)
 		height++;
 	}
 }
+
+void	draw_legend(t_all *pAll)
+{
+	char	*move;
+	char	*lshift;
+	char	*minimap;
+	char	*esc;
+
+	move = "WASD: Move";
+	lshift = "Left Shift: Run";
+	minimap = "M: Toggle Minimap";
+	esc = "ESC: Quit Game";
+	if (pAll->event.show_legend == false)
+		return ;
+	mlx_string_put(pAll->window.mlx, pAll->window.mlx_win, 970, 15,
+		WHITE, move);
+	mlx_string_put(pAll->window.mlx, pAll->window.mlx_win, 970, 30,
+		WHITE, lshift);
+	mlx_string_put(pAll->window.mlx, pAll->window.mlx_win, 970, 45,
+		WHITE, minimap);
+	mlx_string_put(pAll->window.mlx, pAll->window.mlx_win, 970, 60,
+		WHITE, esc);
+}

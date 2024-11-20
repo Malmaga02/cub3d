@@ -35,8 +35,6 @@
 # define SCREEN_W 1080
 # define SCREEN_H 720
 # define ROT 0.050
-# define PLAYER_SPEED 0.09
-
 # define MINIMAP_TILE 6
 
 typedef enum s_color
@@ -101,6 +99,7 @@ typedef struct s_event
 	bool	walk_left;
 	bool	walk_right;
 	bool	show_minimap;
+	bool	show_legend;
 	bool	rotate_left;
 	bool	rotate_right;
 }			t_event;
@@ -117,6 +116,7 @@ typedef struct s_player
 	t_point		dir;
 	t_point		plane;
 	double		angle;
+	double		velox;
 	bool		collision;
 }				t_player;
 
@@ -244,7 +244,7 @@ void		free_map(t_map *pMap);
 int			quit_game(t_all *pAll);
 
 	// Drawing
-//int			create_trgb_text(char *data, int offset);
+void		draw_legend(t_all *pAll);
 t_img		*load_texture(void *mlx, char *file_path);
 void		render_weapon(t_all *pAll, int weapon_x, int weapon_y);
 bool		draw_pixel(t_all *pAll, int x, int y, int color);

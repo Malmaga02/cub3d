@@ -83,7 +83,6 @@ char	*get_map_rows(int fd, int flag)
 				return (complete_gnl(fd), error(MISSING_MAP), free(read_line), NULL);
 		}
 	}
-	complete_gnl(fd);
 	if (!read_line || empty_line(read_line))
 		return (free(read_line), NULL);
 	content = ft_strdup(read_line);
@@ -112,6 +111,7 @@ char	**get_map(char *name_file)
 		free(content);
 		content = get_map_rows(fd, 1);
 	}
+	complete_gnl(fd);
 	close(fd);
 	if (!head)
 		return (NULL);

@@ -14,6 +14,8 @@
 
 void	free_element(t_element *pElement)
 {
+	if (!pElement)
+		return ;
 	if (pElement->north)
 		free(pElement->north);
 	if (pElement->south)
@@ -28,8 +30,26 @@ void	free_element(t_element *pElement)
 		free(pElement->floor);
 }
 
+void	free_image(t_all *pAll)
+{
+	if (pAll->texture.north)
+		mlx_destroy_image(pAll->window.mlx, pAll->texture.north);
+	if (pAll->texture.south)
+		mlx_destroy_image(pAll->window.mlx, pAll->texture.south);
+	if (pAll->texture.east)
+		mlx_destroy_image(pAll->window.mlx, pAll->texture.east);
+	if (pAll->texture.west)
+		mlx_destroy_image(pAll->window.mlx, pAll->texture.west);
+	if (pAll->window.weapon)
+		mlx_destroy_image(pAll->window.mlx, pAll->window.weapon);
+	if (pAll->window.frame)
+		mlx_destroy_image(pAll->window.mlx, pAll->window.frame);
+}
+
 void	free_map(t_map *pMap)
 {
+	if (!pMap)
+		return ;
 	free_mtx(pMap->map);
 	pMap->map = NULL;
 	pMap->rows = 0;
@@ -42,8 +62,9 @@ int	quit_game(t_all *pAll)
 		mlx_destroy_window(pAll->window.mlx, pAll->window.mlx_win);
 	if (pAll->window.mlx)
 	{
-		mlx_destroy_image(pAll->window.mlx, pAll->window.frame);
+		free_image(pAll);
 		mlx_destroy_display(pAll->window.mlx);
 	}
+	free(pAll->window.mlx);
 	return (exit(0), 0);
 }

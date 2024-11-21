@@ -41,7 +41,7 @@ SRC = ./src/algo/calculate.c \
 all: $(NAME)
 
 $(NAME): $(SRC)
-	@[ -d "$(MLX_DIR)" ] || echo "Downloading MLX..." && $(DOWNLOAD_MLX)
+	@[ -d "$(MLX_DIR)" ] || (echo "Downloading MLX..." && $(DOWNLOAD_MLX))
 	@make all -s -C $(LIBFT_MAKE)
 	@make -C $(MLX_DIR)
 	$(CC) $(CFLAGS) $(SRC) -L$(LIBFT_MAKE) -lft $(MLX_INCLUDE) -o $(NAME)
@@ -61,7 +61,7 @@ VALGRIND = valgrind --quiet --leak-check=full --show-leak-kinds=all --track-orig
 
 valgrind: all
 	clear
-	$(VALGRIND) ./$(NAME) maps/map.cub
+	$(VALGRIND) ./$(NAME) maps/map2.cub
 
 # .SILENT:
 .PHONY: all clean fclean re

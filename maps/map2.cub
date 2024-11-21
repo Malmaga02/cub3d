@@ -3,7 +3,7 @@ SO ./src/textures/xpms/S_wall.xpm
 WE ./src/textures/xpms/W_wall.xpm
 EA ./src/textures/xpms/E_wall.xpm
 
-C 123,23,46
+C 123, 23,46
 F 2,3,4
 
         111111111111111111111

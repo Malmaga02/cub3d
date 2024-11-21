@@ -12,6 +12,25 @@
 
 #include "cub3d.h"
 
+bool	check_fc_value(char *str)
+{
+	int	i;
+
+	i = 0;
+	str = ft_strtrim(str, " ");
+	if (!str || ft_strlen(str) == 0)
+		return (false);
+	if (str[0] == '+' || str[0] == '-')
+		i++;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (free(str), false);
+		i++;
+	}
+	return (free(str), true);
+}
+
 int	*rgb_values(char *s)
 {
 	char	**color_mtx;
@@ -26,7 +45,9 @@ int	*rgb_values(char *s)
 	while (i < 3)
 	{
 		rgb_values[i] = ft_atoi(color_mtx[i]);
-		if (rgb_values[i] < 0 || rgb_values[i] > 255)
+		if (rgb_values[i] < 0
+			|| rgb_values[i] > 255
+			|| check_fc_value(color_mtx[i]) == false)
 			return (free(rgb_values), free_mtx(color_mtx), NULL);
 		i++;
 	}

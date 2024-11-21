@@ -80,9 +80,10 @@ char	*get_map_rows(int fd, int flag)
 			free(read_line);
 			read_line = gnl(fd);
 			if (!read_line)
-				return (error(MISSING_MAP), free(read_line), NULL);
+				return (complete_gnl(fd), error(MISSING_MAP), free(read_line), NULL);
 		}
 	}
+	complete_gnl(fd);
 	if (!read_line || empty_line(read_line))
 		return (free(read_line), NULL);
 	content = ft_strdup(read_line);
@@ -106,7 +107,7 @@ char	**get_map(char *name_file)
 	{
 		node = ft_lstnew((void *)ft_strdup(content));
 		if (empty_line(content) || !node)
-			return (ft_lstclear(&head, free), close(fd), free(content), NULL);
+			return (complete_gnl(fd), ft_lstclear(&head, free), close(fd), free(content), NULL);
 		ft_lstadd_back(&head, node);
 		free(content);
 		content = get_map_rows(fd, 1);

@@ -39,6 +39,8 @@ int	*rgb_values(char *s)
 
 	i = 0;
 	color_mtx = ft_split(s, ',');
+	if (count_rows(color_mtx) != 3)
+		return (free_mtx(color_mtx), NULL);
 	rgb_values = ft_calloc(3, sizeof(int));
 	if (!rgb_values)
 		return (free_mtx(color_mtx), NULL);

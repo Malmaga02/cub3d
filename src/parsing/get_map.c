@@ -6,7 +6,7 @@
 /*   By: mgalmari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:23:28 by mgalmari          #+#    #+#             */
-/*   Updated: 2024/11/13 16:09:18 by mgalmari         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:40:33 by mgalmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ char	*get_map_rows(int fd, int flag)
 			free(read_line);
 			read_line = gnl(fd);
 			if (!read_line)
-				return (complete_gnl(fd), error(MISSING_MAP), free(read_line), NULL);
+			{
+				complete_gnl(fd);
+				return (error(MISSING_MAP), free(read_line), NULL);
+			}
 		}
 	}
 	if (!read_line || empty_line(read_line))
@@ -106,9 +109,10 @@ char	**get_map(char *name_file)
 	{
 		node = ft_lstnew((void *)ft_strdup(content));
 		if (empty_line(content) || !node)
-			return (complete_gnl(fd), ft_lstclear(&head, free), close(fd), free(content), NULL);
-		ft_lstadd_back(&head, node);
+			return (complete_gnl(fd), ft_lstclear(&head, free),
+				close(fd), free(content), NULL);
 		free(content);
+		ft_lstadd_back(&head, node);
 		content = get_map_rows(fd, 1);
 	}
 	complete_gnl(fd);

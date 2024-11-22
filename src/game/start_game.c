@@ -32,6 +32,25 @@ int	move_player(t_all *cubed)
 	return (0);
 }
 
+int	load_window_and_textures(t_all *pAll, char *filename)
+{
+	pAll->window.frame = mlx_new_image(pAll->window.mlx, 1080, 720);
+	if (!pAll->window.frame)
+	{
+		ft_putstr_fd("Error creating MLX image", 2);
+		return (quit_game(pAll), 0);
+	}
+	pAll->window.weapon = load_texture(pAll->window.mlx, PLAYER_TEXTURE);
+	if (!pAll->window.weapon)
+		return (quit_game(pAll), 0);
+	if (!get_texture_and_colors(filename, pAll))
+	{
+		ft_putstr_fd("Error during texture rendering", 2);
+		return (quit_game(pAll), 0);
+	}
+	return (1);
+}
+
 int	game_loop(t_all *pAll)
 {
 	raycast(pAll);
@@ -50,19 +69,12 @@ int	game_loop(t_all *pAll)
 	return (0);
 }
 
-int	start_game(t_all *pAll, char *name_file)
+int	start_game(t_all *pAll, char *filename)
 {
 	pAll->window.mlx = mlx_init();
 	if (!pAll->window.mlx)
 		return (ft_printf("Error creating MLX instance"), quit_game(pAll));
-	pAll->window.frame = mlx_new_image(pAll->window.mlx, 1080, 720);
-	if (!pAll->window.frame)
-		return (ft_printf("Error creating MLX image"), quit_game(pAll));
-	pAll->window.weapon = load_texture(pAll->window.mlx, PLAYER_TEXTURE);
-	if (!pAll->window.weapon)
-		return (quit_game(pAll));
-	if (!get_texture_and_colors(name_file, pAll))
-		return (ft_printf("Error during textures rendering"), quit_game(pAll));
+	load_window_and_textures(pAll, filename);
 	pAll->window.mlx_win = mlx_new_window(pAll->window.mlx, 1080, 720, "cub3D");
 	if (!pAll->window.mlx_win)
 		return (ft_printf("Error creating MLX window"), quit_game(pAll));

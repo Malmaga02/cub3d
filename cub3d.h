@@ -186,6 +186,12 @@ char		**get_map(char *name_file);
 t_player	set_pos_angle(int x, int y, int pov, t_player player);
 void		set_info_player(int x, int y, int pov, t_all *pAll);
 
+	// Get_rgb_values
+bool		check_fc_value(char *str);
+int			*rgb_values(char *s);
+int			get_rgb(int *rgb_values);
+bool		get_rgb_colors(t_element info_element, t_all *pAll);
+
 	// Get_texture_and_colors
 int			*rgb_values(char *s);
 int			get_rgb(int *rgb_values);
@@ -200,15 +206,16 @@ void		init_algo(t_all *pAll);
 bool		init_all(t_all *pAll, char *name_file);
 
 	// Playability
+bool		is_player_inside_map(char **map, int row, int col);
 bool		correct_char_set(char **map);
 bool		is_surrounded(char **map, int row, int col);
 bool		closed_map(char **map);
 bool		is_map_playable(char **map);
 
 	// Utils
+bool		exists(char **map, int row, int col);
 bool		is_char_set(int c);
 bool		extern_char(int c);
-bool		is_inside_row(int row, int total_row);
 bool		is_inside_col(int col, int len);
 bool		is_player(int c);
 

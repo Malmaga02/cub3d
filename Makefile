@@ -29,6 +29,7 @@ SRC = ./src/algo/calculate.c \
 	./src/parsing/get_elements.c \
 	./src/parsing/get_map.c \
 	./src/parsing/get_player.c \
+	./src/parsing/get_rgb_colors.c \
 	./src/parsing/get_texture_and_colors.c \
 	./src/parsing/init_all.c \
 	./src/parsing/playability.c \

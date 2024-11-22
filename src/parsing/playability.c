@@ -6,11 +6,18 @@
 /*   By: mgalmari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:23:28 by mgalmari          #+#    #+#             */
-/*   Updated: 2024/11/13 16:09:18 by mgalmari         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:40:33 by mgalmari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+bool	is_player_inside_map(char **map, int row, int col)
+{
+	if (is_player(map[row][col]) && is_surrounded(map, row, col))
+		return (true);
+	return (false);
+}
 
 bool	correct_char_set(char **map)
 {
@@ -26,7 +33,7 @@ bool	correct_char_set(char **map)
 		col = 0;
 		while (map[row] && map[row][col])
 		{
-			if (is_player(map[row][col]) && player == false)
+			if (is_player_inside_map(map, row, col) && player == false)
 				player = true;
 			else if (is_player(map[row][col]) && player == true)
 				return (error(MULTIPLE_PLAYER), false);
@@ -48,10 +55,10 @@ bool	is_surrounded(char **map, int row, int col)
 
 	total_rows = count_rows(map);
 	len = ft_strlen(map[row]);
-	if ((is_inside_row(row, total_rows) && check_spaces(map[row - 1][col]))
-		|| (is_inside_row(row, total_rows) && check_spaces(map[row + 1][col]))
-		|| (is_inside_col(col, len) && check_spaces(map[row][col - 1]))
-		|| (is_inside_col(col, len) && check_spaces(map[row][col + 1])))
+	if ((exists(map, row - 1, col) && check_spaces(map[row - 1][col]))
+		|| (exists(map, row + 1, col) && check_spaces(map[row + 1][col]))
+		|| (exists(map, row, col - 1) && check_spaces(map[row][col - 1]))
+		|| (exists(map, row, col + 1) && check_spaces(map[row][col + 1])))
 		return (false);
 	return (true);
 }

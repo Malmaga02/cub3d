@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 19:32:08 by brulutaj          #+#    #+#             */
-/*   Updated: 2024/11/22 16:40:33 by mgalmari         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:53:40 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	calc_forward_backward_move(t_all *cubed, double *dx, double *dy)
 
 void	calc_lateral_move(t_all *cubed, double *dx, double *dy)
 {
-	if (cubed->event.walk_left)
+	if (cubed->event.walk_right)
 	{
 		*dx -= cubed->player.dir.y * cubed->player.velox
 			* cubed->player.velox_mult;
 		*dy += cubed->player.dir.x * cubed->player.velox
 			* cubed->player.velox_mult;
 	}
-	if (cubed->event.walk_right)
+	if (cubed->event.walk_left)
 	{
 		*dx += cubed->player.dir.y * cubed->player.velox
 			* cubed->player.velox_mult;

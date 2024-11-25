@@ -6,7 +6,7 @@
 /*   By: brulutaj <brulutaj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:09:09 by mgalmari          #+#    #+#             */
-/*   Updated: 2024/11/25 14:26:58 by brulutaj         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:53:00 by brulutaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	set_info_player(int x, int y, int pov, t_all *all_info)
 	all_info->player.velox_mult = 1;
 	if (pov == 'N')
 	{
-		all_info->player.plane.x = -0.66;
+		all_info->player.plane.x = 0.66;
 		all_info->player.dir.y = -1;
 	}
 	else if (pov == 'E')
@@ -44,7 +44,7 @@ void	set_info_player(int x, int y, int pov, t_all *all_info)
 	}
 	else if (pov == 'S')
 	{
-		all_info->player.plane.x = 0.66;
+		all_info->player.plane.x = -0.66;
 		all_info->player.dir.y = 1;
 	}
 	else if (pov == 'W')

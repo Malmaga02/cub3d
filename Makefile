@@ -62,7 +62,7 @@ VALGRIND = valgrind --quiet --leak-check=full --show-leak-kinds=all --track-orig
 
 valgrind: all
 	clear
-	$(VALGRIND) ./$(NAME) maps/map2.cub
+	$(VALGRIND) ./$(NAME) maps/map.cub
 
 # .SILENT:
 .PHONY: all clean fclean re

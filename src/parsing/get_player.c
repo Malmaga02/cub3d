@@ -39,7 +39,7 @@ void	set_info_player(int x, int y, int pov, t_all *all_info)
 	}
 	else if (pov == 'E')
 	{
-		all_info->player.plane.y = -0.66;
+		all_info->player.plane.y = 0.66;
 		all_info->player.dir.x = 1;
 	}
 	else if (pov == 'S')
@@ -49,7 +49,7 @@ void	set_info_player(int x, int y, int pov, t_all *all_info)
 	}
 	else if (pov == 'W')
 	{
-		all_info->player.plane.y = 0.66;
+		all_info->player.plane.y = -0.66;
 		all_info->player.dir.x = -1;
 	}
 }

@@ -55,6 +55,9 @@ bool	is_surrounded(char **map, int row, int col)
 
 	total_rows = count_rows(map);
 	len = ft_strlen(map[row]);
+	if (!exists(map, row - 1, col) || !exists(map, row + 1, col)
+		|| !exists(map, row, col - 1) || !exists(map, row, col + 1))
+		return (false);
 	if ((exists(map, row - 1, col) && check_spaces(map[row - 1][col]))
 		|| (exists(map, row + 1, col) && check_spaces(map[row + 1][col]))
 		|| (exists(map, row, col - 1) && check_spaces(map[row][col - 1]))

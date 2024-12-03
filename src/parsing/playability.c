@@ -75,7 +75,7 @@ bool	closed_map(char **map)
 	{
 		col = 0;
 		len = ft_strlen(map[row]);
-		if (!extern_char(map[row][col]) || !extern_char(map[row][len - 1]))
+		if (!extern_char(map[row][col]) || !extern_char(map[row][len - 2]))
 			return (error(OPEN_MAP), false);
 		while (map[row] && map[row][col])
 		{

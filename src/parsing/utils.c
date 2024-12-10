@@ -28,7 +28,7 @@ bool	extern_char(int c)
 
 bool	is_inside_col(int col, int len)
 {
-	if (col > 0 && col < len - 1)
+	if (col >= 0 && col < len - 1)
 		return (true);
 	return (false);
 }
